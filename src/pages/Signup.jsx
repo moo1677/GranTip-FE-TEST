@@ -6,7 +6,7 @@ import SelectListModal from "../components/common/SelectListModal";
 import universityList from "../data/universityList";
 import highschoolList from "../data/highschoolList";
 const Signup = () => {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const handleNextStep = () => {
     setIsTransitioning(true);
