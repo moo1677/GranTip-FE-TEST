@@ -5,6 +5,7 @@ import useFormInput from "../hooks/useFormInput";
 import SelectListModal from "../components/common/SelectListModal";
 import universityList from "../data/universityList";
 import highschoolList from "../data/highschoolList";
+import AddressSearch from "../components/common/AddressSearch";
 const Signup = () => {
   const [step, setStep] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -20,7 +21,7 @@ const Signup = () => {
     validate: (v) => emailRegex.test(v),
     errorMessage: "이메일 형식이 올바르지 않습니다",
   });
-  const user = useFormInput("");
+  const username = useFormInput("");
   const password = useFormInput({
     initialValue: "",
     validate: (v) => v.length > 7,
@@ -33,11 +34,12 @@ const Signup = () => {
   });
 
   const [gender, setGender] = useState("");
-  const [selectedUniv, setSelectedUniv] = useState("");
-  const [selectedHighSchool, setSelectedHighSchool] = useState("");
+  const [current_school, setSelectedUniv] = useState("");
+  const [high_school, setSelectedHighSchool] = useState("");
   const [showUnivModal, setShowUnivModal] = useState(false);
   const [showHighModal, setShowHighModal] = useState(false);
 
+  const [resident_address, setResidentAddress] = useState("");
   const phone = useFormInput({
     initialValue: "",
     validate: (v) => /^01[016789]-?\d{3,4}-?\d{4}$/.test(v.replace(/-/g, "")),
@@ -86,8 +88,8 @@ const Signup = () => {
               <input
                 className="signup-user-input"
                 type="text"
-                value={user.value}
-                onChange={user.onChange}
+                value={username.value}
+                onChange={username.onChange}
               />
               <div className="signup-pass">* 비밀번호</div>
               <input
@@ -169,11 +171,11 @@ const Signup = () => {
               <div className="signup-current-school">* 재학 중인 대학교</div>
               <div
                 className={`signup-current-school-input ${
-                  selectedUniv ? "active" : ""
+                  current_school ? "active" : ""
                 }`}
                 onClick={() => setShowUnivModal(true)}
               >
-                {selectedUniv || "대학교를 선택해주세요"}
+                {current_school || "대학교를 선택해주세요"}
               </div>
               {showUnivModal && (
                 <SelectListModal
@@ -187,12 +189,12 @@ const Signup = () => {
               <div className="signup-high-school">* 출신 고등학교</div>
               <div
                 className={`signup-high-school-input ${
-                  selectedHighSchool ? "active" : ""
+                  high_school ? "active" : ""
                 }`}
                 onClick={() => setShowHighModal(true)}
               >
-                {selectedHighSchool
-                  ? selectedHighSchool.name
+                {high_school
+                  ? high_school.name
                   : "출신 고등학교를 선택해주세요"}
               </div>
               {showHighModal && (
@@ -205,7 +207,9 @@ const Signup = () => {
                 />
               )}
               <div className="signup-resident-address">* 거주지</div>
-              <div className="signup-resident-address-input"></div>
+              <div className="signup-resident-address-input">
+                <AddressSearch onSelect={setResidentAddress} />
+              </div>
               <div className="signup-address">* 연고지</div>
               <div className="signup-address-input"></div>
               <div className="address-info">
