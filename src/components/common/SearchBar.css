@@ -33,7 +33,7 @@
   display: block;
   font-size: 32px;
   font-weight: 500;
-  color: #d1d1d1;
+  color: #000000;
   text-align: center;
   border: none;
   border-bottom: 2px solid #d1d1d1;
@@ -43,6 +43,9 @@
   box-sizing: border-box;
 }
 
+.searchbar:focus::placeholder {
+  color: transparent;
+}
 .searchbar::placeholder {
   color: #d1d1d18e;
   font-size: 32px;
@@ -60,4 +63,51 @@
   width: 30px;
   height: 30px;
   opacity: 0.3;
+}
+
+.suggestion-list {
+  margin: 0 auto;
+  width: 80%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  /* max-height: 200px; */
+  overflow-y: auto;
+  /* transform: translateY(-2px); */
+}
+
+.suggestion-header {
+  padding: 6px;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+  background-color: #f9f9f9;
+  color: #666;
+  font-size: 14px;
+}
+
+.keyword-name {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px;
+  font-size: 15px;
+  color: #333;
+}
+
+.delete-keyword {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.no-recent {
+  padding: 10px;
+  color: #aaa;
+  font-size: 14px;
+  text-align: center;
 }

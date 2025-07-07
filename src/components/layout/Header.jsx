@@ -1,5 +1,8 @@
 import "./Header.css";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="header-wrapper">
       <div className="header-inner">
@@ -12,9 +15,9 @@ const Header = () => {
           <div>기타</div>
         </div>
         <div className="user-menu">
-          <div>로그인</div>
+          <div onClick={() => navigate("/login")}>로그인</div>
           <div>/</div>
-          <div>회원가입</div>
+          <div onClick={() => navigate("/signup")}>회원가입</div>
         </div>
       </div>
     </div>

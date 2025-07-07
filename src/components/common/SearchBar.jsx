@@ -5,7 +5,6 @@ import { CiSearch } from "react-icons/ci";
 const SearchBar = ({
   inputText,
   setInputText,
-  setSearchText,
   //   scholarshipData,
 }) => {
   const [suggestions, setSuggestions] = useState([]);
@@ -53,9 +52,8 @@ const SearchBar = ({
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       //이벤트 버블링 방지(새로고침 방지)
-      console.log("엔터 눌림");
       e.preventDefault();
-      triggerSearch();
+      triggerSearch(e.target.value);
     }
   };
   // 자동완성 된 검색어를 누르면 해당 페이지로 이동
@@ -66,21 +64,22 @@ const SearchBar = ({
     setTimeout(() => triggerSearch(), 0);
   };
 
-  const triggerSearch = () => {
+  const triggerSearch = (text) => {
     //공백 검색 방지
-    if (!inputText.trim()) return;
+    const trimmed = text.trim();
+    if (!trimmed) return;
 
     //인코딩
-    const encoded = encodeURIComponent(inputText.trim());
+    const encoded = encodeURIComponent(trimmed);
     //이전 검색어 입력시 검색x(중복검색방지)
     // // if (lastOpened.current === encoded) return;
     // lastOpened.current = encoded;
-    setSearchText(inputText);
-    saveKeyword(inputText);
-    console.log(inputText);
+    saveKeyword(trimmed);
+    console.log(trimmed);
     // 라우팅을 위한
     // window.open(`/find?query=${encoded}`, "_blank", "noopener,noreferrer");
   };
+
   //최근검색어
   const handleInputFocus = () => {
     setIsFocused(true);
@@ -137,7 +136,7 @@ const SearchBar = ({
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            triggerSearch();
+            triggerSearch(inputText);
           }}
         />
         {showRecent && (
