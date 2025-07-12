@@ -1,0 +1,174 @@
+.my-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 900px;
+  height: 1044px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0px 10px 15px 0px rgba(0, 104, 255, 0.1);
+  margin: 33px auto;
+}
+.user-header {
+  position: relative;
+  height: 55px;
+  width: 630px;
+}
+
+.my-page h1 {
+  padding: 20px;
+  height: 34px;
+  color: #0068ff;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 7px;
+}
+
+.user-info-editing {
+  position: absolute;
+  right: 0;
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: Inter;
+  font-size: 8px;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-underline-position: from-font;
+  cursor: pointer;
+}
+.user-info {
+  margin-top: 5px;
+  width: 650px;
+  height: 100px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 1px 2px 30px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 60px;
+}
+.user-info-section {
+  width: 230px;
+  height: 100px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user-info-name {
+  margin-top: 7px;
+  color: rgba(0, 0, 0, 0.65);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.user-info-school {
+  margin-top: 3px;
+  color: rgba(0, 0, 0, 0.29);
+  text-align: center;
+  font-family: Inter;
+  font-size: 13px;
+}
+.user-info-univ {
+  margin-top: 3px;
+  color: rgba(0, 0, 0, 0.29);
+  text-align: center;
+  font-family: Inter;
+  font-size: 13px;
+}
+.v-line {
+  margin: auto;
+  width: 2px;
+  height: 75.06px;
+  background: rgba(0, 0, 0, 0.3);
+}
+.scholar-mark {
+  margin: 15px auto;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 15px;
+  font-weight: 600;
+}
+.scholar-mark-num {
+  color: rgba(0, 0, 0, 0.29);
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 15px;
+}
+.scholar-info {
+  padding: 20px 40px 15px 40px;
+  margin-top: 20px;
+  width: 650px;
+  height: auto;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 1px 2px 30px 0px rgba(0, 0, 0, 0.1);
+}
+.scholar-info h3 {
+  color: #0068ff;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.scholar-info-card {
+  padding: 8px 0;
+  width: 550px;
+  height: 50px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 1px 2px 30px 0px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.scholar-info-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 1px 2px 15px 0px rgba(0, 104, 255, 0.1);
+}
+.scholar-info-name {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-family: Inter;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.scholar-info-date {
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: Inter;
+  font-size: 13px;
+}
+.scholar-calendar {
+  padding: 16px;
+  margin-top: 20px;
+  width: 650px;
+  height: 577px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 1px 2px 30px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.calender-section {
+  width: 550px;
+  height: 486px;
+  border-radius: 20px;
+  background: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.calender-info {
+  color: #000;
+  font-family: Inter;
+  font-size: 15px;
+}
