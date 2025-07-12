@@ -33,7 +33,7 @@ const AddressSearch = ({ onSelect }) => {
           onClick={() => setIsOpen(false)} // 바깥 클릭 시 닫기
         >
           <div
-            className="modal-content"
+            className="modal-content-address"
             onClick={(e) => e.stopPropagation()} // 모달 내부 클릭은 무시
           >
             <div ref={wrapRef} style={{ width: "100%", height: "100%" }} />

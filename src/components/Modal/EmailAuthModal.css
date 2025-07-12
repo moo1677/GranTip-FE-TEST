@@ -1,0 +1,54 @@
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.modal-content h3 {
+  color: #0068ff;
+  margin-bottom: 10px;
+}
+.modal-content p {
+  margin: 10px auto;
+}
+.resend-wrapper {
+  margin-top: 10px;
+}
+
+.resend-wrapper button {
+  width: 200px;
+  font-size: 13px;
+  padding: 6px 10px;
+}
+.close-btn {
+  padding: 5px 10px;
+  background-color: #fff;
+  color: #007bff;
+  border: solid 1px #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 auto;
+  transition: 0.3s ease;
+}
+.close-btn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+.send-btn {
+  width: 100px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+.modal-content-address {
+  width: 500px;
+  height: 600px;
+  margin: 220px auto;
+  background: white;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}

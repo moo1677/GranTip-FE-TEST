@@ -97,6 +97,7 @@
   color: rgba(0, 0, 0, 0.7);
   font-family: Inter;
   font-size: 15px;
+  margin-right: 7px;
 }
 .login-signup-btn {
   display: inline-block;
