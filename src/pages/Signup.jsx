@@ -2,9 +2,12 @@ import "./Signup.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import useFormInput from "../hooks/useFormInput";
-import SelectListModal from "../components/common/SelectListModal";
+import SelectListModal from "../components/Modal/SelectListModal";
 import universityList from "../data/universityList";
 import highschoolList from "../data/highschoolList";
+import AddressSearch from "../components/Modal/AddressSearch";
+import RegionSelectModal from "../components/Modal/RegionSelectModal";
+import EmailAuthModal from "../components/Modal/EmailAuthModal";
 const Signup = () => {
   const [step, setStep] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -20,7 +23,10 @@ const Signup = () => {
     validate: (v) => emailRegex.test(v),
     errorMessage: "이메일 형식이 올바르지 않습니다",
   });
-  const user = useFormInput("");
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [emailVerified, setEmailVerified] = useState(false);
+
+  const username = useFormInput("");
   const password = useFormInput({
     initialValue: "",
     validate: (v) => v.length > 7,
@@ -33,16 +39,31 @@ const Signup = () => {
   });
 
   const [gender, setGender] = useState("");
-  const [selectedUniv, setSelectedUniv] = useState("");
-  const [selectedHighSchool, setSelectedHighSchool] = useState("");
+  const [current_school, setSelectedUniv] = useState("");
+  const [high_school, setSelectedHighSchool] = useState("");
   const [showUnivModal, setShowUnivModal] = useState(false);
   const [showHighModal, setShowHighModal] = useState(false);
 
+  const [resident_address, setResidentAddress] = useState("");
+  const [address, setAddress] = useState("");
+  const [showAddressModal, setShowAddressModal] = useState("");
   const phone = useFormInput({
     initialValue: "",
     validate: (v) => /^01[016789]-?\d{3,4}-?\d{4}$/.test(v.replace(/-/g, "")),
     errorMessage: "전화번호 형식이 올바르지 않습니다",
   });
+
+  const formData = {
+    email: email.value,
+    username: username.value,
+    password: password.value,
+    gender: gender,
+    current_school: current_school,
+    high_school: high_school.name,
+    resident_address: resident_address,
+    address: address,
+    phone: phone.value,
+  };
 
   const navigate = useNavigate();
 
@@ -67,14 +88,24 @@ const Signup = () => {
           {step === 1 && (
             <>
               <div className="signup-email">* 이메일</div>
-              <input
-                className="signup-email-input"
-                type="text"
-                value={email.value}
-                onChange={email.onChange}
-                onFocus={email.onFocus}
-                onBlur={email.onBlur}
-              />
+
+              <div className="signup-email-row">
+                <input
+                  className="signup-email-input"
+                  type="text"
+                  value={email.value}
+                  onChange={email.onChange}
+                  onFocus={email.onFocus}
+                  onBlur={email.onBlur}
+                />
+                <button
+                  className="email-auth-btn"
+                  onClick={() => setShowEmailModal(true)}
+                  disabled={!email.value || email.error}
+                >
+                  이메일 인증
+                </button>
+              </div>
               <div
                 className={`error-message ${
                   !email.isFocused && email.error ? "show" : ""
@@ -82,12 +113,25 @@ const Signup = () => {
               >
                 {email.error}
               </div>
+              <div className="signup-email-auth"></div>
+              {emailVerified && (
+                <span className="verified-tag">✔ 인증 완료</span>
+              )}
+
+              {showEmailModal && (
+                <EmailAuthModal
+                  email={email.value}
+                  onVerified={() => setEmailVerified(true)}
+                  onClose={() => setShowEmailModal(false)}
+                />
+              )}
+
               <div className="signup-user">* 이름</div>
               <input
                 className="signup-user-input"
                 type="text"
-                value={user.value}
-                onChange={user.onChange}
+                value={username.value}
+                onChange={username.onChange}
               />
               <div className="signup-pass">* 비밀번호</div>
               <input
@@ -169,11 +213,11 @@ const Signup = () => {
               <div className="signup-current-school">* 재학 중인 대학교</div>
               <div
                 className={`signup-current-school-input ${
-                  selectedUniv ? "active" : ""
+                  current_school ? "active" : ""
                 }`}
                 onClick={() => setShowUnivModal(true)}
               >
-                {selectedUniv || "대학교를 선택해주세요"}
+                {current_school || "대학교를 선택해주세요"}
               </div>
               {showUnivModal && (
                 <SelectListModal
@@ -187,12 +231,12 @@ const Signup = () => {
               <div className="signup-high-school">* 출신 고등학교</div>
               <div
                 className={`signup-high-school-input ${
-                  selectedHighSchool ? "active" : ""
+                  high_school ? "active" : ""
                 }`}
                 onClick={() => setShowHighModal(true)}
               >
-                {selectedHighSchool
-                  ? selectedHighSchool.name
+                {high_school
+                  ? high_school.name
                   : "출신 고등학교를 선택해주세요"}
               </div>
               {showHighModal && (
@@ -205,9 +249,22 @@ const Signup = () => {
                 />
               )}
               <div className="signup-resident-address">* 거주지</div>
-              <div className="signup-resident-address-input"></div>
+              <div className="signup-resident-address-input">
+                <AddressSearch onSelect={setResidentAddress} />
+              </div>
               <div className="signup-address">* 연고지</div>
-              <div className="signup-address-input"></div>
+              <div
+                className={`signup-address-input ${address ? "active" : ""}`}
+                onClick={() => setShowAddressModal(true)}
+              >
+                {address ? address : "출신 지역을 선택해주세요"}
+              </div>
+              {showAddressModal && (
+                <RegionSelectModal
+                  onSelect={(item) => setAddress(item)}
+                  onClose={() => setShowAddressModal(false)}
+                />
+              )}
               <div className="address-info">
                 지자체 기준 장학금 대상 확인을 위해 사용됩니다
               </div>
@@ -230,7 +287,9 @@ const Signup = () => {
               <button
                 className={`signup-btn ${isFormValid ? "active" : ""}`}
                 disabled={!isFormValid}
-                onClick={() => navigate("/")}
+                onClick={() => {
+                  console.log(formData);
+                }}
               >
                 회원가입
               </button>

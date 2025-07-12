@@ -1,6 +1,7 @@
 import "./Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -31,7 +32,17 @@ const Login = () => {
     setIsFocused(true);
   };
 
-  const loginProcess = () => {
+  const loginProcess = async () => {
+    try {
+      const result = await axios.post("localhost:8080/auth/login", {
+        loginId: email,
+        password: password,
+      });
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+
     navigate("/");
   };
 

@@ -8,8 +8,8 @@ const SelectListModal = ({ title, list, onSelect, onClose, getLabel }) => {
   const filtered = list.filter((item) => getLabel(item).includes(keyword));
 
   return (
-    <div className="select-modal-overlay">
-      <div className="select-modal">
+    <div className="select-modal-overlay" onClick={onClose}>
+      <div className="select-modal" onClick={(e) => e.stopPropagation()}>
         <h3>{title}</h3>
         <input
           type="text"

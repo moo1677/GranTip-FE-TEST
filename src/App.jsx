@@ -4,18 +4,50 @@ import Home from "./pages/Home";
 import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import PageTransitionWrapper from "./components/layout/PageTransitionWrapper";
+import { AnimatePresence, motion } from "framer-motion";
+
 function AppContent() {
   const location = useLocation();
   const hideHeaderRoutes = ["/login", "/signup"];
   const hideHeader = hideHeaderRoutes.includes(location.pathname);
   return (
     <>
-      {!hideHeader && <Header />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
+      <AnimatePresence>
+        {!hideHeader && (
+          <PageTransitionWrapper>
+            <Header />
+          </PageTransitionWrapper>
+        )}
+      </AnimatePresence>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route
+            path="/"
+            element={
+              <PageTransitionWrapper>
+                <Home />
+              </PageTransitionWrapper>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PageTransitionWrapper>
+                <Login />
+              </PageTransitionWrapper>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <PageTransitionWrapper>
+                <Signup />
+              </PageTransitionWrapper>
+            }
+          />
+        </Routes>
+      </AnimatePresence>
     </>
   );
 }

@@ -93,11 +93,81 @@
   cursor: pointer;
   color: #686868;
 }
+.signup-resident-address-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .signup-current-school-input.active,
-.signup-high-school-input.active {
+.signup-high-school-input.active,
+.signup-address-input.active {
   color: #000000;
 }
 .signup-phone-input:focus {
   outline: none;
   border-bottom: solid 1px #0068ff;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 500px;
+  height: 600px;
+  background: #fff;
+  margin: 160px auto;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.address-search-btn {
+  padding: 8px 4px;
+  outline: none;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  margin-left: auto;
+  border: solid 1px rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+.address-search-btn:hover {
+  background-color: #cdcdcd;
+}
+.selected-address {
+  color: black;
+}
+.signup-email-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.signup-email-input {
+  width: 450px; /* 기존 유지 */
+  flex-shrink: 0;
+}
+
+.email-auth-btn {
+  padding: 10px 14px;
+  height: 42px;
+  font-size: 14px;
+  background-color: #0068ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transform: translateX(-100px);
+}
+
+.email-auth-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
