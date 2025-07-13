@@ -18,7 +18,6 @@
   border-radius: 30px;
   background: #fff;
   border: none;
-  /* transform: translateY(2px) translateX(2px); */
   transition: 0.5s ease;
 }
 .toggle.selected {

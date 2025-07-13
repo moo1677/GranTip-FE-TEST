@@ -4,7 +4,7 @@ import { useState } from "react";
 import useFormInput from "../hooks/useFormInput";
 import SelectListModal from "../components/Modal/SelectListModal";
 import universityList from "../data/universityList";
-import highschoolList from "../data/highschoolList";
+import highSchools from "../data/highSchools_labeled.js";
 import AddressSearch from "../components/Modal/AddressSearch";
 import RegionSelectModal from "../components/Modal/RegionSelectModal";
 import EmailAuthModal from "../components/Modal/EmailAuthModal";
@@ -12,12 +12,14 @@ const Signup = () => {
   const [step, setStep] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const handleNextStep = () => {
+    alert("정확한 정보를 입력하지 않으면, 맞춤형 장학금 추천이 불가능합니다.");
     setIsTransitioning(true);
     setTimeout(() => {
       setStep(2);
       setIsTransitioning(false);
     }, 300); // CSS transition 시간과 맞춤
   };
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const email = useFormInput({
     initialValue: "",
     validate: (v) => emailRegex.test(v),
@@ -44,6 +46,7 @@ const Signup = () => {
   const [showUnivModal, setShowUnivModal] = useState(false);
   const [showHighModal, setShowHighModal] = useState(false);
 
+  const [showResidentModal, setShowResidentModal] = useState(false);
   const [resident_address, setResidentAddress] = useState("");
   const [address, setAddress] = useState("");
   const [showAddressModal, setShowAddressModal] = useState("");
@@ -67,7 +70,6 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isFormValid =
     email.error === "" &&
     password.error === "" &&
@@ -101,7 +103,7 @@ const Signup = () => {
                 <button
                   className="email-auth-btn"
                   onClick={() => setShowEmailModal(true)}
-                  disabled={!email.value || email.error}
+                  disabled={!email.isValid}
                 >
                   이메일 인증
                 </button>
@@ -228,6 +230,9 @@ const Signup = () => {
                   onClose={() => setShowUnivModal(false)}
                 />
               )}
+              <div className="address-info">
+                특정 대학 장학금 자격 여부를 확인하기 위해 사용됩니다.
+              </div>
               <div className="signup-high-school">* 출신 고등학교</div>
               <div
                 className={`signup-high-school-input ${
@@ -235,23 +240,39 @@ const Signup = () => {
                 }`}
                 onClick={() => setShowHighModal(true)}
               >
-                {high_school
-                  ? high_school.name
-                  : "출신 고등학교를 선택해주세요"}
+                {high_school ? high_school : "출신 고등학교를 선택해주세요"}
               </div>
               {showHighModal && (
                 <SelectListModal
-                  title="지역 및 학교명 검색"
-                  list={highschoolList}
-                  getLabel={(item) => `${item.name} (${item.region})`}
+                  title="학교명 검색"
+                  list={highSchools}
+                  getLabel={(item) => item}
                   onSelect={(item) => setSelectedHighSchool(item)}
                   onClose={() => setShowHighModal(false)}
                 />
               )}
-              <div className="signup-resident-address">* 거주지</div>
-              <div className="signup-resident-address-input">
-                <AddressSearch onSelect={setResidentAddress} />
+              <div className="address-info">
+                특정 고교 대상 장학금 자격 여부를 확인하기 위해 사용됩니다.
               </div>
+              <div className="signup-resident-address">* 거주지</div>
+              <div
+                className={`signup-high-school-input ${
+                  resident_address ? "active" : ""
+                }`}
+                onClick={() => setShowResidentModal(true)}
+              >
+                {resident_address ? resident_address : "거주지를 선택해주세요"}
+              </div>
+              {showResidentModal && (
+                <AddressSearch
+                  onSelect={setResidentAddress}
+                  onClose={() => setShowResidentModal(false)}
+                />
+              )}
+              <div className="address-info">
+                실제 거주 지역 기반 장학금 대상 여부 확인을 위해 사용됩니다
+              </div>
+
               <div className="signup-address">* 연고지</div>
               <div
                 className={`signup-address-input ${address ? "active" : ""}`}
@@ -270,7 +291,8 @@ const Signup = () => {
               </div>
               <div className="signup-phone">* 전화번호</div>
               <input
-                className="signup-phone-input"
+                className={`signup-phone-input ${phone.value ? "active" : ""}`}
+                placeholder="전화번호를 입력해주세요"
                 type="tel"
                 value={phone.value}
                 onChange={phone.onChange}

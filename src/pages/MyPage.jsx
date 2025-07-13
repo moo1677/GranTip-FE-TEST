@@ -1,5 +1,7 @@
 import "./MyPage.css";
+import { useNavigate } from "react-router-dom";
 const MyPage = () => {
+  const navigate = useNavigate();
   let user = {
     username: "신수철",
     current_school: "세종대학교",
@@ -10,7 +12,14 @@ const MyPage = () => {
     <div className="my-page">
       <div className="user-header">
         <h1>{user.username} 님의 마이페이지</h1>
-        <div className="user-info-editing">나의정보편집</div>
+        <div
+          className="user-info-editing"
+          onClick={() => {
+            navigate("/edit");
+          }}
+        >
+          나의정보편집
+        </div>
       </div>
       <div className="user-info">
         <div className="user-info-section">
@@ -22,7 +31,7 @@ const MyPage = () => {
             <div className="user-info-univ">{user.university_year}</div>
           )}
         </div>
-        <div class="v-line"></div>
+        <div className="v-line"></div>
         <div className="user-info-section">
           <div className="scholar-mark">즐겨찾기한 장학금</div>
           <div className="scholar-mark-num">{user.scholar_mark}개</div>
@@ -42,7 +51,7 @@ const MyPage = () => {
         </div>
       </div>
       <div className="scholar-calendar">
-        <h3>장학 캘린더</h3>
+        <div className="scholar-calender-label">장학 캘린더</div>
         <div className="calender-section">
           <div className="calender-info">캘린더입니다.</div>
         </div>

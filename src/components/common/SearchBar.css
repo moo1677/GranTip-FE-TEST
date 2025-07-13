@@ -66,6 +66,8 @@
 }
 
 .suggestion-list {
+  position: relative;
+  z-index: 999999;
   margin: 0 auto;
   width: 80%;
   background-color: #fff;
