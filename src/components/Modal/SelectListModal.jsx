@@ -11,13 +11,15 @@ const SelectListModal = ({ title, list, onSelect, onClose, getLabel }) => {
     <div className="select-modal-overlay" onClick={onClose}>
       <div className="select-modal" onClick={(e) => e.stopPropagation()}>
         <h3>{title}</h3>
-        <input
-          type="text"
-          placeholder="검색어를 입력하세요"
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-          className="select-modal-input"
-        />
+        {title !== "학년 선택" && (
+          <input
+            type="text"
+            placeholder="검색어를 입력하세요"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            className="select-modal-input"
+          />
+        )}
         <ul className="select-modal-list">
           {filtered.length === 0 ? (
             <li className="select-modal-empty">검색 결과가 없습니다</li>

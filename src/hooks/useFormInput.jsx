@@ -8,19 +8,28 @@ function useFormInput({
   const [value, setValue] = useState(initialValue);
   const [error, setError] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const [touched, setTouched] = useState(false);
 
-  const onChange = (e) => setValue(e.target.value);
+  const onChange = (e) => {
+    setValue(e.target.value);
+    if (!touched) setTouched(true);
+  };
+
   const onFocus = () => setIsFocused(true);
   const onBlur = () => setIsFocused(false);
+
   useEffect(() => {
-    if (value === "") {
-      setError(""); // 아직 안 썼을 땐 에러 X
+    if (!touched || value === "") {
+      setError("");
     } else if (!validate(value)) {
-      setError(errorMessage);
+      setError(isFocused ? "" : errorMessage); // 포커스 중엔 안 보여줘
     } else {
       setError("");
     }
-  }, [value, validate, errorMessage]);
+  }, [value, validate, errorMessage, isFocused, touched]);
+
+  const isValid = value !== "" && validate(value); // ✅ 핵심 수정
+
   return {
     value,
     onChange,
@@ -28,7 +37,7 @@ function useFormInput({
     onBlur,
     error,
     isFocused,
-    isValid: error === "",
+    isValid, // 여기 기준으로 버튼 활성화 판단
     setValue,
   };
 }

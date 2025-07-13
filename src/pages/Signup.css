@@ -15,10 +15,13 @@
 .signup-resident-address,
 .signup-address,
 .signup-phone {
-  margin-top: 23px;
+  margin-top: 28px;
   color: #797979;
   font-family: ABeeZee;
   font-size: 16px;
+}
+.signup-current-school {
+  margin-top: 20px;
 }
 .signup-radio {
   display: flex;
@@ -32,7 +35,7 @@
 }
 .signup-next-btn,
 .signup-btn {
-  margin-top: 40px;
+  margin-top: 20px;
   width: 470px;
   height: 75px;
   flex-shrink: 0;
@@ -69,6 +72,8 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  padding-left: 5px;
+  padding-top: 2px;
 }
 .signup-input {
   transition: opacity 0.3s ease;
@@ -84,14 +89,17 @@
 .signup-address-input,
 .signup-phone-input {
   width: 450px;
-  height: 50px;
+  height: 40px;
   border: 0;
   border-bottom: solid 1px #797979;
   font-size: 20px;
-  padding-top: 18px;
+  padding-top: 8px;
   padding-left: 5px;
   cursor: pointer;
   color: #686868;
+}
+input:focus::placeholder {
+  color: transparent;
 }
 .signup-resident-address-input {
   display: flex;
@@ -100,7 +108,8 @@
 }
 .signup-current-school-input.active,
 .signup-high-school-input.active,
-.signup-address-input.active {
+.signup-address-input.active,
+.signup-phone-input {
   color: #000000;
 }
 .signup-phone-input:focus {
@@ -143,11 +152,6 @@
 .selected-address {
   color: black;
 }
-.signup-email-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
 
 .signup-email-input {
   width: 450px; /* 기존 유지 */
@@ -158,6 +162,7 @@
   padding: 10px 14px;
   height: 42px;
   font-size: 14px;
+  font-weight: 600;
   background-color: #0068ff;
   color: white;
   border: none;
@@ -168,6 +173,14 @@
 }
 
 .email-auth-btn:disabled {
-  background-color: #ccc;
+  border-radius: 10px;
+  border: 1.5px solid #b2b2b2;
+  background: none;
+  color: #b2b2b2;
+  transition: 0.3s ease-out;
   cursor: not-allowed;
+}
+.signup-email-row {
+  display: flex;
+  justify-content: space-between;
 }

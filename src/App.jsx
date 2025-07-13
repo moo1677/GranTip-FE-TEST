@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PageTransitionWrapper from "./components/layout/PageTransitionWrapper";
 import { AnimatePresence, motion } from "framer-motion";
+import MyPage from "./pages/MyPage";
+import UserInfoEdit from "./pages/UserInfoEdit";
 
 function AppContent() {
   const location = useLocation();
@@ -43,6 +45,22 @@ function AppContent() {
             element={
               <PageTransitionWrapper>
                 <Signup />
+              </PageTransitionWrapper>
+            }
+          />
+          <Route
+            path="/mypage"
+            element={
+              <PageTransitionWrapper>
+                <MyPage />
+              </PageTransitionWrapper>
+            }
+          />
+          <Route
+            path="/edit"
+            element={
+              <PageTransitionWrapper>
+                <UserInfoEdit />
               </PageTransitionWrapper>
             }
           />
