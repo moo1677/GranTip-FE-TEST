@@ -19,4 +19,5 @@
   gap: 18px;
   padding: 10px 0;
   scroll-snap-type: x mandatory;
+  scrollbar-width: none;
 }
