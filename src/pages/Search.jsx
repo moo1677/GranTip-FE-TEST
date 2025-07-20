@@ -13,9 +13,11 @@ const Search = () => {
     "전체",
     "지역연고",
     "성적우수",
-    "소득분위",
-    "특수계층",
+    "소득구분",
+    "특기자",
+    "장애인",
     "기타",
+    "해당없음",
   ];
   const itemsPerPage = 15;
   const navigate = useNavigate();
@@ -27,12 +29,12 @@ const Search = () => {
     text?.toLowerCase().includes(query?.toLowerCase());
 
   const filteredByText = ScholarShip.filter((r) =>
-    includesQuery(r.name, searchText)
+    includesQuery(r.product_name, searchText)
   );
   const filterList =
     category === "전체"
       ? filteredByText
-      : filteredByText.filter((r) => r.support_type === category);
+      : filteredByText.filter((r) => r.scholarship_category === category);
 
   const handlePageChange = (pageNum) => {
     setCurrentPage(pageNum);
@@ -65,14 +67,15 @@ const Search = () => {
           {currentItems.length === 0 && <div>검색 결과가 없습니다</div>}
           {currentItems.map((scholarShip) => (
             <div className="search-card">
-              <h3>{scholarShip.name}</h3>
+              <h3>{scholarShip.product_name}</h3>
               <div className="card-info-wrapper">
                 <div className="info-category">
-                  {scholarShip.agency_type} / {scholarShip.category} /{" "}
-                  {scholarShip.support_type}
+                  {scholarShip.provider_type} / {scholarShip.product_type} /{" "}
+                  {scholarShip.scholarship_category}
                 </div>
                 <div className="info-date">
-                  모집기한 : {scholarShip.start_date} ~ {scholarShip.end_date}
+                  모집기한 : {scholarShip.application_start_date} ~{" "}
+                  {scholarShip.application_end_date}
                 </div>
               </div>
             </div>

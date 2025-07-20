@@ -1,0 +1,732 @@
+[
+  {
+    "id": 1,
+    "original_id": 1000,
+    "product_name": "샘플 장학금 1호",
+    "provider_name": "장학기관 1",
+    "provider_type": "정부기관",
+    "product_type": "등록금지원형",
+    "scholarship_category": "국가장학금",
+    "application_start_date": "2025-07-20",
+    "application_end_date": "2025-08-19",
+    "homepage_url": "https://scholarships.example.com/1000",
+    "university_category": ["4년제", "전문대"],
+    "grade_category": ["1학년", "2학년"],
+    "department_category": ["컴퓨터공학", "전자공학"],
+    "num_of_recipients_total": 100,
+    "recipients_by_category": {
+      "컴퓨터공학": 50,
+      "전자공학": 50
+    },
+    "is_recommendation_required": true,
+    "is_duplicate_support_restricted": true,
+    "qualification_tags": ["소득분위 3분위 이하", "농어촌 거주자"],
+    "grade_criteria_detail": [
+      "예시 grade_criteria_detail 내용 1",
+      "예시 grade_criteria_detail 내용 2"
+    ],
+    "income_criteria_detail": [
+      "예시 income_criteria_detail 내용 1",
+      "예시 income_criteria_detail 내용 2"
+    ],
+    "support_detail": [
+      "예시 support_detail 내용 1",
+      "예시 support_detail 내용 2"
+    ],
+    "specific_qualification_detail": [
+      "예시 specific_qualification_detail 내용 1",
+      "예시 specific_qualification_detail 내용 2"
+    ],
+    "region_residence_detail": [
+      "예시 region_residence_detail 내용 1",
+      "예시 region_residence_detail 내용 2"
+    ],
+    "selection_method_detail": [
+      "예시 selection_method_detail 내용 1",
+      "예시 selection_method_detail 내용 2"
+    ],
+    "selection_personnel_detail": [
+      "예시 selection_personnel_detail 내용 1",
+      "예시 selection_personnel_detail 내용 2"
+    ],
+    "qualification_restriction_detail": [
+      "예시 qualification_restriction_detail 내용 1",
+      "예시 qualification_restriction_detail 내용 2"
+    ],
+    "recommendation_needed_detail": [
+      "예시 recommendation_needed_detail 내용 1",
+      "예시 recommendation_needed_detail 내용 2"
+    ],
+    "required_documents_detail": [
+      "예시 required_documents_detail 내용 1",
+      "예시 required_documents_detail 내용 2"
+    ],
+    "grade_criteria_notes": "3.5 이상일 경우 우선 선발",
+    "income_criteria_notes": "최근 1년 기준",
+    "support_notes": "학기별로 분할 지급",
+    "specific_qualification_notes": "우대사항일 뿐 필수는 아님",
+    "region_residence_notes": "주민등록 기준 확인",
+    "selection_method_notes": "면접은 온라인으로 진행 가능",
+    "selection_personnel_notes": "신청자 수에 따라 변동 가능",
+    "qualification_restriction_notes": "단, 국가장학금과 중복 가능",
+    "recommendation_needed_notes": "미제출 시 서류탈락",
+    "required_documents_notes": "원본 또는 공증사본 제출"
+  },
+  {
+    "id": 2,
+    "original_id": 1001,
+    "product_name": "샘플 장학금 2호",
+    "provider_name": "장학기관 2",
+    "provider_type": "재단법인",
+    "product_type": "생활비지원형",
+    "scholarship_category": "지자체장학금",
+    "application_start_date": "2025-07-21",
+    "application_end_date": "2025-08-20",
+    "homepage_url": "https://scholarships.example.com/1001",
+    "university_category": ["4년제"],
+    "grade_category": ["3학년", "4학년"],
+    "department_category": ["경영학", "사회복지학"],
+    "num_of_recipients_total": 105,
+    "recipients_by_category": {
+      "경영학": 60,
+      "사회복지학": 40
+    },
+    "is_recommendation_required": false,
+    "is_duplicate_support_restricted": false,
+    "qualification_tags": ["다문화가정", "장애인 가정 자녀"],
+    "grade_criteria_detail": [
+      "예시 grade_criteria_detail 내용 1",
+      "예시 grade_criteria_detail 내용 2"
+    ],
+    "income_criteria_detail": [
+      "예시 income_criteria_detail 내용 1",
+      "예시 income_criteria_detail 내용 2"
+    ],
+    "support_detail": [
+      "예시 support_detail 내용 1",
+      "예시 support_detail 내용 2"
+    ],
+    "specific_qualification_detail": [
+      "예시 specific_qualification_detail 내용 1",
+      "예시 specific_qualification_detail 내용 2"
+    ],
+    "region_residence_detail": [
+      "예시 region_residence_detail 내용 1",
+      "예시 region_residence_detail 내용 2"
+    ],
+    "selection_method_detail": [
+      "예시 selection_method_detail 내용 1",
+      "예시 selection_method_detail 내용 2"
+    ],
+    "selection_personnel_detail": [
+      "예시 selection_personnel_detail 내용 1",
+      "예시 selection_personnel_detail 내용 2"
+    ],
+    "qualification_restriction_detail": [
+      "예시 qualification_restriction_detail 내용 1",
+      "예시 qualification_restriction_detail 내용 2"
+    ],
+    "recommendation_needed_detail": [
+      "예시 recommendation_needed_detail 내용 1",
+      "예시 recommendation_needed_detail 내용 2"
+    ],
+    "required_documents_detail": [
+      "예시 required_documents_detail 내용 1",
+      "예시 required_documents_detail 내용 2"
+    ],
+    "grade_criteria_notes": "",
+    "income_criteria_notes": "최근 1년 기준",
+    "support_notes": "학기별로 분할 지급",
+    "specific_qualification_notes": "우대사항일 뿐 필수는 아님",
+    "region_residence_notes": "주민등록 기준 확인",
+    "selection_method_notes": "면접은 온라인으로 진행 가능",
+    "selection_personnel_notes": "신청자 수에 따라 변동 가능",
+    "qualification_restriction_notes": "단, 국가장학금과 중복 가능",
+    "recommendation_needed_notes": "미제출 시 서류탈락",
+    "required_documents_notes": "원본 또는 공증사본 제출"
+  },
+  {
+    "id": 3,
+    "original_id": 1002,
+    "product_name": "샘플 장학금 3호",
+    "provider_name": "장학기관 3",
+    "provider_type": "정부기관",
+    "product_type": "생활비지원형",
+    "scholarship_category": "국가장학금",
+    "application_start_date": "2025-07-22",
+    "application_end_date": "2025-08-21",
+    "homepage_url": "https://scholarships.example.com/1002",
+    "university_category": ["4년제", "전문대"],
+    "grade_category": ["1학년", "2학년"],
+    "department_category": ["경영학", "사회복지학"],
+    "num_of_recipients_total": 110,
+    "recipients_by_category": {
+      "경영학": 60,
+      "사회복지학": 40
+    },
+    "is_recommendation_required": true,
+    "is_duplicate_support_restricted": false,
+    "qualification_tags": ["소득분위 3분위 이하", "농어촌 거주자"],
+    "grade_criteria_detail": [
+      "예시 grade_criteria_detail 내용 1",
+      "예시 grade_criteria_detail 내용 2"
+    ],
+    "income_criteria_detail": [
+      "예시 income_criteria_detail 내용 1",
+      "예시 income_criteria_detail 내용 2"
+    ],
+    "support_detail": [
+      "예시 support_detail 내용 1",
+      "예시 support_detail 내용 2"
+    ],
+    "specific_qualification_detail": [
+      "예시 specific_qualification_detail 내용 1",
+      "예시 specific_qualification_detail 내용 2"
+    ],
+    "region_residence_detail": [
+      "예시 region_residence_detail 내용 1",
+      "예시 region_residence_detail 내용 2"
+    ],
+    "selection_method_detail": [
+      "예시 selection_method_detail 내용 1",
+      "예시 selection_method_detail 내용 2"
+    ],
+    "selection_personnel_detail": [
+      "예시 selection_personnel_detail 내용 1",
+      "예시 selection_personnel_detail 내용 2"
+    ],
+    "qualification_restriction_detail": [
+      "예시 qualification_restriction_detail 내용 1",
+      "예시 qualification_restriction_detail 내용 2"
+    ],
+    "recommendation_needed_detail": [
+      "예시 recommendation_needed_detail 내용 1",
+      "예시 recommendation_needed_detail 내용 2"
+    ],
+    "required_documents_detail": [
+      "예시 required_documents_detail 내용 1",
+      "예시 required_documents_detail 내용 2"
+    ],
+    "grade_criteria_notes": "3.5 이상일 경우 우선 선발",
+    "income_criteria_notes": "최근 1년 기준",
+    "support_notes": "학기별로 분할 지급",
+    "specific_qualification_notes": "우대사항일 뿐 필수는 아님",
+    "region_residence_notes": "주민등록 기준 확인",
+    "selection_method_notes": "면접은 온라인으로 진행 가능",
+    "selection_personnel_notes": "신청자 수에 따라 변동 가능",
+    "qualification_restriction_notes": "단, 국가장학금과 중복 가능",
+    "recommendation_needed_notes": "미제출 시 서류탈락",
+    "required_documents_notes": "원본 또는 공증사본 제출"
+  },
+  {
+    "id": 4,
+    "original_id": 1003,
+    "product_name": "샘플 장학금 4호",
+    "provider_name": "장학기관 4",
+    "provider_type": "재단법인",
+    "product_type": "등록금지원형",
+    "scholarship_category": "지자체장학금",
+    "application_start_date": "2025-07-23",
+    "application_end_date": "2025-08-22",
+    "homepage_url": "https://scholarships.example.com/1003",
+    "university_category": ["4년제"],
+    "grade_category": ["3학년", "4학년"],
+    "department_category": ["컴퓨터공학", "전자공학"],
+    "num_of_recipients_total": 115,
+    "recipients_by_category": {
+      "컴퓨터공학": 50,
+      "전자공학": 50
+    },
+    "is_recommendation_required": false,
+    "is_duplicate_support_restricted": true,
+    "qualification_tags": ["다문화가정", "장애인 가정 자녀"],
+    "grade_criteria_detail": [
+      "예시 grade_criteria_detail 내용 1",
+      "예시 grade_criteria_detail 내용 2"
+    ],
+    "income_criteria_detail": [
+      "예시 income_criteria_detail 내용 1",
+      "예시 income_criteria_detail 내용 2"
+    ],
+    "support_detail": [
+      "예시 support_detail 내용 1",
+      "예시 support_detail 내용 2"
+    ],
+    "specific_qualification_detail": [
+      "예시 specific_qualification_detail 내용 1",
+      "예시 specific_qualification_detail 내용 2"
+    ],
+    "region_residence_detail": [
+      "예시 region_residence_detail 내용 1",
+      "예시 region_residence_detail 내용 2"
+    ],
+    "selection_method_detail": [
+      "예시 selection_method_detail 내용 1",
+      "예시 selection_method_detail 내용 2"
+    ],
+    "selection_personnel_detail": [
+      "예시 selection_personnel_detail 내용 1",
+      "예시 selection_personnel_detail 내용 2"
+    ],
+    "qualification_restriction_detail": [
+      "예시 qualification_restriction_detail 내용 1",
+      "예시 qualification_restriction_detail 내용 2"
+    ],
+    "recommendation_needed_detail": [
+      "예시 recommendation_needed_detail 내용 1",
+      "예시 recommendation_needed_detail 내용 2"
+    ],
+    "required_documents_detail": [
+      "예시 required_documents_detail 내용 1",
+      "예시 required_documents_detail 내용 2"
+    ],
+    "grade_criteria_notes": "3.5 이상일 경우 우선 선발",
+    "income_criteria_notes": "최근 1년 기준",
+    "support_notes": "학기별로 분할 지급",
+    "specific_qualification_notes": "우대사항일 뿐 필수는 아님",
+    "region_residence_notes": "주민등록 기준 확인",
+    "selection_method_notes": "면접은 온라인으로 진행 가능",
+    "selection_personnel_notes": "신청자 수에 따라 변동 가능",
+    "qualification_restriction_notes": "단, 국가장학금과 중복 가능",
+    "recommendation_needed_notes": "미제출 시 서류탈락",
+    "required_documents_notes": "원본 또는 공증사본 제출"
+  },
+  {
+    "id": 5,
+    "original_id": 1004,
+    "product_name": "샘플 장학금 5호",
+    "provider_name": "장학기관 5",
+    "provider_type": "정부기관",
+    "product_type": "생활비지원형",
+    "scholarship_category": "국가장학금",
+    "application_start_date": "2025-07-24",
+    "application_end_date": "2025-08-23",
+    "homepage_url": "https://scholarships.example.com/1004",
+    "university_category": ["4년제", "전문대"],
+    "grade_category": ["1학년", "2학년"],
+    "department_category": ["경영학", "사회복지학"],
+    "num_of_recipients_total": 120,
+    "recipients_by_category": {
+      "경영학": 60,
+      "사회복지학": 40
+    },
+    "is_recommendation_required": true,
+    "is_duplicate_support_restricted": false,
+    "qualification_tags": ["소득분위 3분위 이하", "농어촌 거주자"],
+    "grade_criteria_detail": [
+      "예시 grade_criteria_detail 내용 1",
+      "예시 grade_criteria_detail 내용 2"
+    ],
+    "income_criteria_detail": [
+      "예시 income_criteria_detail 내용 1",
+      "예시 income_criteria_detail 내용 2"
+    ],
+    "support_detail": [
+      "예시 support_detail 내용 1",
+      "예시 support_detail 내용 2"
+    ],
+    "specific_qualification_detail": [
+      "예시 specific_qualification_detail 내용 1",
+      "예시 specific_qualification_detail 내용 2"
+    ],
+    "region_residence_detail": [
+      "예시 region_residence_detail 내용 1",
+      "예시 region_residence_detail 내용 2"
+    ],
+    "selection_method_detail": [
+      "예시 selection_method_detail 내용 1",
+      "예시 selection_method_detail 내용 2"
+    ],
+    "selection_personnel_detail": [
+      "예시 selection_personnel_detail 내용 1",
+      "예시 selection_personnel_detail 내용 2"
+    ],
+    "qualification_restriction_detail": [
+      "예시 qualification_restriction_detail 내용 1",
+      "예시 qualification_restriction_detail 내용 2"
+    ],
+    "recommendation_needed_detail": [
+      "예시 recommendation_needed_detail 내용 1",
+      "예시 recommendation_needed_detail 내용 2"
+    ],
+    "required_documents_detail": [
+      "예시 required_documents_detail 내용 1",
+      "예시 required_documents_detail 내용 2"
+    ],
+    "grade_criteria_notes": "3.5 이상일 경우 우선 선발",
+    "income_criteria_notes": "최근 1년 기준",
+    "support_notes": "학기별로 분할 지급",
+    "specific_qualification_notes": "우대사항일 뿐 필수는 아님",
+    "region_residence_notes": "주민등록 기준 확인",
+    "selection_method_notes": "면접은 온라인으로 진행 가능",
+    "selection_personnel_notes": "신청자 수에 따라 변동 가능",
+    "qualification_restriction_notes": "단, 국가장학금과 중복 가능",
+    "recommendation_needed_notes": "미제출 시 서류탈락",
+    "required_documents_notes": "원본 또는 공증사본 제출"
+  },
+  {
+    "id": 6,
+    "original_id": 1005,
+    "product_name": "샘플 장학금 6호",
+    "provider_name": "장학기관 6",
+    "provider_type": "재단법인",
+    "product_type": "생활비지원형",
+    "scholarship_category": "지자체장학금",
+    "application_start_date": "2025-07-25",
+    "application_end_date": "2025-08-24",
+    "homepage_url": "https://scholarships.example.com/1005",
+    "university_category": ["4년제"],
+    "grade_category": ["3학년", "4학년"],
+    "department_category": ["경영학", "사회복지학"],
+    "num_of_recipients_total": 125,
+    "recipients_by_category": {
+      "경영학": 60,
+      "사회복지학": 40
+    },
+    "is_recommendation_required": false,
+    "is_duplicate_support_restricted": false,
+    "qualification_tags": ["다문화가정", "장애인 가정 자녀"],
+    "grade_criteria_detail": [
+      "예시 grade_criteria_detail 내용 1",
+      "예시 grade_criteria_detail 내용 2"
+    ],
+    "income_criteria_detail": [
+      "예시 income_criteria_detail 내용 1",
+      "예시 income_criteria_detail 내용 2"
+    ],
+    "support_detail": [
+      "예시 support_detail 내용 1",
+      "예시 support_detail 내용 2"
+    ],
+    "specific_qualification_detail": [
+      "예시 specific_qualification_detail 내용 1",
+      "예시 specific_qualification_detail 내용 2"
+    ],
+    "region_residence_detail": [
+      "예시 region_residence_detail 내용 1",
+      "예시 region_residence_detail 내용 2"
+    ],
+    "selection_method_detail": [
+      "예시 selection_method_detail 내용 1",
+      "예시 selection_method_detail 내용 2"
+    ],
+    "selection_personnel_detail": [
+      "예시 selection_personnel_detail 내용 1",
+      "예시 selection_personnel_detail 내용 2"
+    ],
+    "qualification_restriction_detail": [
+      "예시 qualification_restriction_detail 내용 1",
+      "예시 qualification_restriction_detail 내용 2"
+    ],
+    "recommendation_needed_detail": [
+      "예시 recommendation_needed_detail 내용 1",
+      "예시 recommendation_needed_detail 내용 2"
+    ],
+    "required_documents_detail": [
+      "예시 required_documents_detail 내용 1",
+      "예시 required_documents_detail 내용 2"
+    ],
+    "grade_criteria_notes": "3.5 이상일 경우 우선 선발",
+    "income_criteria_notes": "최근 1년 기준",
+    "support_notes": "학기별로 분할 지급",
+    "specific_qualification_notes": "우대사항일 뿐 필수는 아님",
+    "region_residence_notes": "주민등록 기준 확인",
+    "selection_method_notes": "면접은 온라인으로 진행 가능",
+    "selection_personnel_notes": "신청자 수에 따라 변동 가능",
+    "qualification_restriction_notes": "단, 국가장학금과 중복 가능",
+    "recommendation_needed_notes": "미제출 시 서류탈락",
+    "required_documents_notes": "원본 또는 공증사본 제출"
+  },
+  {
+    "id": 7,
+    "original_id": 1006,
+    "product_name": "샘플 장학금 7호",
+    "provider_name": "장학기관 7",
+    "provider_type": "정부기관",
+    "product_type": "등록금지원형",
+    "scholarship_category": "국가장학금",
+    "application_start_date": "2025-07-26",
+    "application_end_date": "2025-08-25",
+    "homepage_url": "https://scholarships.example.com/1006",
+    "university_category": ["4년제", "전문대"],
+    "grade_category": ["1학년", "2학년"],
+    "department_category": ["컴퓨터공학", "전자공학"],
+    "num_of_recipients_total": 130,
+    "recipients_by_category": {
+      "컴퓨터공학": 50,
+      "전자공학": 50
+    },
+    "is_recommendation_required": true,
+    "is_duplicate_support_restricted": true,
+    "qualification_tags": ["소득분위 3분위 이하", "농어촌 거주자"],
+    "grade_criteria_detail": [
+      "예시 grade_criteria_detail 내용 1",
+      "예시 grade_criteria_detail 내용 2"
+    ],
+    "income_criteria_detail": [
+      "예시 income_criteria_detail 내용 1",
+      "예시 income_criteria_detail 내용 2"
+    ],
+    "support_detail": [
+      "예시 support_detail 내용 1",
+      "예시 support_detail 내용 2"
+    ],
+    "specific_qualification_detail": [
+      "예시 specific_qualification_detail 내용 1",
+      "예시 specific_qualification_detail 내용 2"
+    ],
+    "region_residence_detail": [
+      "예시 region_residence_detail 내용 1",
+      "예시 region_residence_detail 내용 2"
+    ],
+    "selection_method_detail": [
+      "예시 selection_method_detail 내용 1",
+      "예시 selection_method_detail 내용 2"
+    ],
+    "selection_personnel_detail": [
+      "예시 selection_personnel_detail 내용 1",
+      "예시 selection_personnel_detail 내용 2"
+    ],
+    "qualification_restriction_detail": [
+      "예시 qualification_restriction_detail 내용 1",
+      "예시 qualification_restriction_detail 내용 2"
+    ],
+    "recommendation_needed_detail": [
+      "예시 recommendation_needed_detail 내용 1",
+      "예시 recommendation_needed_detail 내용 2"
+    ],
+    "required_documents_detail": [
+      "예시 required_documents_detail 내용 1",
+      "예시 required_documents_detail 내용 2"
+    ],
+    "grade_criteria_notes": "3.5 이상일 경우 우선 선발",
+    "income_criteria_notes": "최근 1년 기준",
+    "support_notes": "학기별로 분할 지급",
+    "specific_qualification_notes": "우대사항일 뿐 필수는 아님",
+    "region_residence_notes": "주민등록 기준 확인",
+    "selection_method_notes": "면접은 온라인으로 진행 가능",
+    "selection_personnel_notes": "신청자 수에 따라 변동 가능",
+    "qualification_restriction_notes": "단, 국가장학금과 중복 가능",
+    "recommendation_needed_notes": "미제출 시 서류탈락",
+    "required_documents_notes": "원본 또는 공증사본 제출"
+  },
+  {
+    "id": 8,
+    "original_id": 1007,
+    "product_name": "샘플 장학금 8호",
+    "provider_name": "장학기관 8",
+    "provider_type": "재단법인",
+    "product_type": "생활비지원형",
+    "scholarship_category": "지자체장학금",
+    "application_start_date": "2025-07-27",
+    "application_end_date": "2025-08-26",
+    "homepage_url": "https://scholarships.example.com/1007",
+    "university_category": ["4년제"],
+    "grade_category": ["3학년", "4학년"],
+    "department_category": ["경영학", "사회복지학"],
+    "num_of_recipients_total": 135,
+    "recipients_by_category": {
+      "경영학": 60,
+      "사회복지학": 40
+    },
+    "is_recommendation_required": false,
+    "is_duplicate_support_restricted": false,
+    "qualification_tags": ["다문화가정", "장애인 가정 자녀"],
+    "grade_criteria_detail": [
+      "예시 grade_criteria_detail 내용 1",
+      "예시 grade_criteria_detail 내용 2"
+    ],
+    "income_criteria_detail": [
+      "예시 income_criteria_detail 내용 1",
+      "예시 income_criteria_detail 내용 2"
+    ],
+    "support_detail": [
+      "예시 support_detail 내용 1",
+      "예시 support_detail 내용 2"
+    ],
+    "specific_qualification_detail": [
+      "예시 specific_qualification_detail 내용 1",
+      "예시 specific_qualification_detail 내용 2"
+    ],
+    "region_residence_detail": [
+      "예시 region_residence_detail 내용 1",
+      "예시 region_residence_detail 내용 2"
+    ],
+    "selection_method_detail": [
+      "예시 selection_method_detail 내용 1",
+      "예시 selection_method_detail 내용 2"
+    ],
+    "selection_personnel_detail": [
+      "예시 selection_personnel_detail 내용 1",
+      "예시 selection_personnel_detail 내용 2"
+    ],
+    "qualification_restriction_detail": [
+      "예시 qualification_restriction_detail 내용 1",
+      "예시 qualification_restriction_detail 내용 2"
+    ],
+    "recommendation_needed_detail": [
+      "예시 recommendation_needed_detail 내용 1",
+      "예시 recommendation_needed_detail 내용 2"
+    ],
+    "required_documents_detail": [
+      "예시 required_documents_detail 내용 1",
+      "예시 required_documents_detail 내용 2"
+    ],
+    "grade_criteria_notes": "3.5 이상일 경우 우선 선발",
+    "income_criteria_notes": "최근 1년 기준",
+    "support_notes": "학기별로 분할 지급",
+    "specific_qualification_notes": "우대사항일 뿐 필수는 아님",
+    "region_residence_notes": "주민등록 기준 확인",
+    "selection_method_notes": "면접은 온라인으로 진행 가능",
+    "selection_personnel_notes": "신청자 수에 따라 변동 가능",
+    "qualification_restriction_notes": "단, 국가장학금과 중복 가능",
+    "recommendation_needed_notes": "미제출 시 서류탈락",
+    "required_documents_notes": "원본 또는 공증사본 제출"
+  },
+  {
+    "id": 9,
+    "original_id": 1008,
+    "product_name": "샘플 장학금 9호",
+    "provider_name": "장학기관 9",
+    "provider_type": "정부기관",
+    "product_type": "생활비지원형",
+    "scholarship_category": "국가장학금",
+    "application_start_date": "2025-07-28",
+    "application_end_date": "2025-08-27",
+    "homepage_url": "https://scholarships.example.com/1008",
+    "university_category": ["4년제", "전문대"],
+    "grade_category": ["1학년", "2학년"],
+    "department_category": ["경영학", "사회복지학"],
+    "num_of_recipients_total": 140,
+    "recipients_by_category": {
+      "경영학": 60,
+      "사회복지학": 40
+    },
+    "is_recommendation_required": true,
+    "is_duplicate_support_restricted": false,
+    "qualification_tags": ["소득분위 3분위 이하", "농어촌 거주자"],
+    "grade_criteria_detail": [
+      "예시 grade_criteria_detail 내용 1",
+      "예시 grade_criteria_detail 내용 2"
+    ],
+    "income_criteria_detail": [
+      "예시 income_criteria_detail 내용 1",
+      "예시 income_criteria_detail 내용 2"
+    ],
+    "support_detail": [
+      "예시 support_detail 내용 1",
+      "예시 support_detail 내용 2"
+    ],
+    "specific_qualification_detail": [
+      "예시 specific_qualification_detail 내용 1",
+      "예시 specific_qualification_detail 내용 2"
+    ],
+    "region_residence_detail": [
+      "예시 region_residence_detail 내용 1",
+      "예시 region_residence_detail 내용 2"
+    ],
+    "selection_method_detail": [
+      "예시 selection_method_detail 내용 1",
+      "예시 selection_method_detail 내용 2"
+    ],
+    "selection_personnel_detail": [
+      "예시 selection_personnel_detail 내용 1",
+      "예시 selection_personnel_detail 내용 2"
+    ],
+    "qualification_restriction_detail": [
+      "예시 qualification_restriction_detail 내용 1",
+      "예시 qualification_restriction_detail 내용 2"
+    ],
+    "recommendation_needed_detail": [
+      "예시 recommendation_needed_detail 내용 1",
+      "예시 recommendation_needed_detail 내용 2"
+    ],
+    "required_documents_detail": [
+      "예시 required_documents_detail 내용 1",
+      "예시 required_documents_detail 내용 2"
+    ],
+    "grade_criteria_notes": "3.5 이상일 경우 우선 선발",
+    "income_criteria_notes": "최근 1년 기준",
+    "support_notes": "학기별로 분할 지급",
+    "specific_qualification_notes": "우대사항일 뿐 필수는 아님",
+    "region_residence_notes": "주민등록 기준 확인",
+    "selection_method_notes": "면접은 온라인으로 진행 가능",
+    "selection_personnel_notes": "신청자 수에 따라 변동 가능",
+    "qualification_restriction_notes": "단, 국가장학금과 중복 가능",
+    "recommendation_needed_notes": "미제출 시 서류탈락",
+    "required_documents_notes": "원본 또는 공증사본 제출"
+  },
+  {
+    "id": 10,
+    "original_id": 1009,
+    "product_name": "샘플 장학금 10호",
+    "provider_name": "장학기관 10",
+    "provider_type": "재단법인",
+    "product_type": "등록금지원형",
+    "scholarship_category": "지자체장학금",
+    "application_start_date": "2025-07-29",
+    "application_end_date": "2025-08-28",
+    "homepage_url": "https://scholarships.example.com/1009",
+    "university_category": ["4년제"],
+    "grade_category": ["3학년", "4학년"],
+    "department_category": ["컴퓨터공학", "전자공학"],
+    "num_of_recipients_total": 145,
+    "recipients_by_category": {
+      "컴퓨터공학": 50,
+      "전자공학": 50
+    },
+    "is_recommendation_required": false,
+    "is_duplicate_support_restricted": true,
+    "qualification_tags": ["다문화가정", "장애인 가정 자녀"],
+    "grade_criteria_detail": [
+      "예시 grade_criteria_detail 내용 1",
+      "예시 grade_criteria_detail 내용 2"
+    ],
+    "income_criteria_detail": [
+      "예시 income_criteria_detail 내용 1",
+      "예시 income_criteria_detail 내용 2"
+    ],
+    "support_detail": [
+      "예시 support_detail 내용 1",
+      "예시 support_detail 내용 2"
+    ],
+    "specific_qualification_detail": [
+      "예시 specific_qualification_detail 내용 1",
+      "예시 specific_qualification_detail 내용 2"
+    ],
+    "region_residence_detail": [
+      "예시 region_residence_detail 내용 1",
+      "예시 region_residence_detail 내용 2"
+    ],
+    "selection_method_detail": [
+      "예시 selection_method_detail 내용 1",
+      "예시 selection_method_detail 내용 2"
+    ],
+    "selection_personnel_detail": [
+      "예시 selection_personnel_detail 내용 1",
+      "예시 selection_personnel_detail 내용 2"
+    ],
+    "qualification_restriction_detail": [
+      "예시 qualification_restriction_detail 내용 1",
+      "예시 qualification_restriction_detail 내용 2"
+    ],
+    "recommendation_needed_detail": [
+      "예시 recommendation_needed_detail 내용 1",
+      "예시 recommendation_needed_detail 내용 2"
+    ],
+    "required_documents_detail": [
+      "예시 required_documents_detail 내용 1",
+      "예시 required_documents_detail 내용 2"
+    ],
+    "grade_criteria_notes": "3.5 이상일 경우 우선 선발",
+    "income_criteria_notes": "최근 1년 기준",
+    "support_notes": "학기별로 분할 지급",
+    "specific_qualification_notes": "우대사항일 뿐 필수는 아님",
+    "region_residence_notes": "주민등록 기준 확인",
+    "selection_method_notes": "면접은 온라인으로 진행 가능",
+    "selection_personnel_notes": "신청자 수에 따라 변동 가능",
+    "qualification_restriction_notes": "단, 국가장학금과 중복 가능",
+    "recommendation_needed_notes": "미제출 시 서류탈락",
+    "required_documents_notes": "원본 또는 공증사본 제출"
+  }
+]

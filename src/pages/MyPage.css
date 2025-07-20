@@ -9,7 +9,7 @@
   --radius: 20px;
   --font-sm: 13px;
   --font-md: 15px;
-  --font-lg: 20px;
+  --font-lg: 27px;
 }
 
 body {
@@ -49,17 +49,18 @@ body {
 .user-header {
   position: relative;
   width: 630px;
-  height: 55px;
+  height: 60px;
 }
 
 .user-info-editing {
   position: absolute;
   right: 0;
-  font-size: 8px;
+  font-size: 10px;
   color: rgba(0, 0, 0, 0.5);
   text-align: right;
   text-decoration: underline;
   text-underline-position: from-font;
+  padding-right: 6px;
   cursor: pointer;
 }
 
@@ -86,7 +87,7 @@ body {
 
 .user-info-name {
   margin-top: 7px;
-  font-size: var(--font-lg);
+  font-size: 20px;
   font-weight: 600;
   color: var(--color-dark-gray);
 }

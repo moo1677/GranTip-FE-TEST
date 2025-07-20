@@ -10,6 +10,7 @@ import MyPage from "./pages/MyPage";
 import UserInfoEdit from "./pages/UserInfoEdit";
 import Search from "./pages/Search";
 import SearchBar from "./components/common/SearchBar";
+import Detail from "./pages/Detail";
 import { useState } from "react";
 function AppContent() {
   const [inputText, setInputText] = useState("");
@@ -78,6 +79,14 @@ function AppContent() {
                 />
                 <Search />
               </>
+            }
+          />
+          <Route
+            path="/detail/:id"
+            element={
+              <PageTransitionWrapper>
+                <Detail />
+              </PageTransitionWrapper>
             }
           />
         </Routes>
