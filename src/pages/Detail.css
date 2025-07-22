@@ -130,6 +130,7 @@
 .more-info-dot {
   color: rgba(0, 0, 0, 0.6);
   font-family: Inter;
+  word-break: keep-all;
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 5px;

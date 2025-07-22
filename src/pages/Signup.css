@@ -184,3 +184,6 @@ input:focus::placeholder {
   display: flex;
   justify-content: space-between;
 }
+.search-none {
+  margin-top: 40px;
+}

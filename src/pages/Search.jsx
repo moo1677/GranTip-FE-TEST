@@ -29,12 +29,12 @@ const Search = () => {
     text?.toLowerCase().includes(query?.toLowerCase());
 
   const filteredByText = ScholarShip.filter((r) =>
-    includesQuery(r.product_name, searchText)
+    includesQuery(r["상품명"], searchText)
   );
   const filterList =
     category === "전체"
       ? filteredByText
-      : filteredByText.filter((r) => r.scholarship_category === category);
+      : filteredByText.filter((r) => r["학자금유형구분"] === category);
 
   const handlePageChange = (pageNum) => {
     setCurrentPage(pageNum);
@@ -64,18 +64,25 @@ const Search = () => {
           ))}
         </div>
         <div className="search-list">
-          {currentItems.length === 0 && <div>검색 결과가 없습니다</div>}
+          {currentItems.length === 0 && (
+            <div className="search-none">검색 결과가 없습니다</div>
+          )}
           {currentItems.map((scholarShip) => (
-            <div className="search-card">
-              <h3>{scholarShip.product_name}</h3>
+            <div
+              className="search-card"
+              onClick={() => {
+                navigate(`/detail/${scholarShip["번호"]}`);
+              }}
+            >
+              <h3>{scholarShip["상품명"]}</h3>
               <div className="card-info-wrapper">
                 <div className="info-category">
-                  {scholarShip.provider_type} / {scholarShip.product_type} /{" "}
-                  {scholarShip.scholarship_category}
+                  {scholarShip["운영기관명"]} / {scholarShip["상품구분"]} /{" "}
+                  {scholarShip["학자금유형구분"]}
                 </div>
                 <div className="info-date">
-                  모집기한 : {scholarShip.application_start_date} ~{" "}
-                  {scholarShip.application_end_date}
+                  모집기한 : {scholarShip["모집시작일"]} ~{" "}
+                  {scholarShip["모집종료일"]}
                 </div>
               </div>
             </div>

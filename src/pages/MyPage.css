@@ -173,24 +173,16 @@ body {
 }
 
 .scholar-calendar {
-  height: 577px;
-  padding: 16px;
+  height: 550px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .calender-section {
-  width: 550px;
+  width: 540px;
   height: 486px;
   border-radius: var(--radius);
-  background: var(--color-light-gray);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.calender-info {
-  font-size: var(--font-md);
-  color: #000;
+  background: #fff;
 }
