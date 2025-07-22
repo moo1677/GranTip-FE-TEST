@@ -5,11 +5,15 @@ import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PageTransitionWrapper from "./components/layout/PageTransitionWrapper";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import MyPage from "./pages/MyPage";
 import UserInfoEdit from "./pages/UserInfoEdit";
-
+import Search from "./pages/Search";
+import SearchBar from "./components/common/SearchBar";
+import Detail from "./pages/Detail";
+import { useState } from "react";
 function AppContent() {
+  const [inputText, setInputText] = useState("");
   const location = useLocation();
   const hideHeaderRoutes = ["/login", "/signup"];
   const hideHeader = hideHeaderRoutes.includes(location.pathname);
@@ -18,7 +22,7 @@ function AppContent() {
       <AnimatePresence>
         {!hideHeader && (
           <PageTransitionWrapper>
-            <Header />
+            <Header setSearchText={setInputText} />
           </PageTransitionWrapper>
         )}
       </AnimatePresence>
@@ -28,7 +32,7 @@ function AppContent() {
             path="/"
             element={
               <PageTransitionWrapper>
-                <Home />
+                <Home inputText={inputText} setInputText={setInputText} />
               </PageTransitionWrapper>
             }
           />
@@ -61,6 +65,27 @@ function AppContent() {
             element={
               <PageTransitionWrapper>
                 <UserInfoEdit />
+              </PageTransitionWrapper>
+            }
+          />
+          <Route
+            path="/search"
+            element={
+              <>
+                <SearchBar
+                  inputText={inputText}
+                  setInputText={setInputText}
+                  customClassActive={"this"}
+                />
+                <Search />
+              </>
+            }
+          />
+          <Route
+            path="/detail/:id"
+            element={
+              <PageTransitionWrapper>
+                <Detail />
               </PageTransitionWrapper>
             }
           />

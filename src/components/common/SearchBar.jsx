@@ -1,18 +1,23 @@
 import "./SearchBar.css";
 import { useState, useRef, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
-
+import { useNavigate } from "react-router-dom";
 const SearchBar = ({
   inputText,
   setInputText,
+  customClassActive,
   //   scholarshipData,
 }) => {
   const [suggestions, setSuggestions] = useState([]);
   const [recentKeywords, setRecentKeywords] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const searchBoxRef = useRef(null);
-  //   const lastOpened = useRef("");
+  const navigate = useNavigate();
+  const navigatePageHandle = (text) => {
+    navigate(`/search?query=${encodeURIComponent(text)}`);
+  };
 
+  //   const lastOpened = useRef("");
   const includesQuery = (text, query) =>
     text?.toLowerCase().includes(query?.toLowerCase());
 
@@ -26,7 +31,6 @@ const SearchBar = ({
     localStorage.setItem("recentKeywords", JSON.stringify(saved));
     //saved를 저장
     setRecentKeywords(saved);
-    console.log(recentKeywords);
   };
 
   const onChangeContent = (e) => {
@@ -50,34 +54,28 @@ const SearchBar = ({
 
   // 엔터키를 누르면 검색
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !e.nativeEvent.isComposing) {
       //이벤트 버블링 방지(새로고침 방지)
       e.preventDefault();
-      triggerSearch(e.target.value);
+      e.target.blur();
+      triggerSearch(inputText);
     }
   };
   // 자동완성 된 검색어를 누르면 해당 페이지로 이동
-  const handleSuggestionClick = (scholarship) => {
-    setInputText(scholarship.name); // inputText를 업데이트
+  const handleSuggestionClick = (text) => {
+    setInputText(text); // inputText를 업데이트
     setSuggestions([]);
     //순서보장
-    setTimeout(() => triggerSearch(), 0);
+    triggerSearch(text);
   };
 
   const triggerSearch = (text) => {
     //공백 검색 방지
     const trimmed = text.trim();
     if (!trimmed) return;
-
-    //인코딩
-    const encoded = encodeURIComponent(trimmed);
-    //이전 검색어 입력시 검색x(중복검색방지)
-    // // if (lastOpened.current === encoded) return;
-    // lastOpened.current = encoded;
     saveKeyword(trimmed);
-    console.log(trimmed);
-    // 라우팅을 위한
-    // window.open(`/find?query=${encoded}`, "_blank", "noopener,noreferrer");
+    navigatePageHandle(text);
+    setIsFocused(false);
   };
 
   //최근검색어
@@ -111,34 +109,44 @@ const SearchBar = ({
   const showRecent = isFocused && suggestions.length === 0;
 
   return (
-    <div className="search">
-      <h1>장학금명 또는 운영기관명으로 검색</h1>
-      <h2>장학금명, 운영기관 또는 지역 이름으로 원하는 장학금을 찾아보세요.</h2>
-
+    <div className="searchbar-wrapper">
       <div
         ref={searchBoxRef}
-        className={`searchbox ${
-          showRecent || suggestions.length > 0 ? "has-suggestions" : ""
-        }`}
+        className={`search ${customClassActive ? "custom" : ""}
+        ${showRecent ? "action" : ""}`}
       >
-        <input
-          className="searchbar"
-          type="text"
-          placeholder="#장학금"
-          value={inputText}
-          onChange={onChangeContent}
-          onFocus={handleInputFocus}
-          onKeyDown={handleKeyDown}
-        />
-        <CiSearch
-          type="button"
-          className="search-btn"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            triggerSearch(inputText);
-          }}
-        />
+        {!showRecent && !customClassActive && (
+          <>
+            <h1>장학금명 또는 운영기관명으로 검색</h1>
+            <h2>
+              장학금명, 운영기관 또는 지역 이름으로 원하는 장학금을 찾아보세요.
+            </h2>
+          </>
+        )}
+        <div
+          className={`searchbox-wrapper ${
+            showRecent || customClassActive ? "action" : ""
+          }`}
+        >
+          <input
+            className={`searchbar ${showRecent ? "action" : ""}`}
+            type="text"
+            placeholder="#장학금"
+            value={inputText}
+            onChange={onChangeContent}
+            onFocus={handleInputFocus}
+            onKeyDown={handleKeyDown}
+          />
+          <CiSearch
+            type="button"
+            className={`search-btn ${showRecent ? "action" : ""}`}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              triggerSearch(inputText);
+            }}
+          />
+        </div>
         {showRecent && (
           <div className="suggestion-list">
             <div className="suggestion-header">
@@ -150,13 +158,7 @@ const SearchBar = ({
                   <li key={index}>
                     <span
                       className="keyword-name"
-                      //   onClick={() =>
-                      //     // window.open(
-                      //     //   `/find?query=${encodeURIComponent(item)}`,
-                      //     //   "_blank",
-                      //     //   "noopener,noreferrer"
-                      //     // )
-                      //   }
+                      onClick={() => handleSuggestionClick(item)}
                     >
                       {item}
                     </span>

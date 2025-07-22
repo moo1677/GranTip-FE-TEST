@@ -1,12 +1,15 @@
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
-const Header = () => {
+const Header = ({ setSearchText }) => {
   const navigate = useNavigate();
-
+  const homeHandler = () => {
+    navigate("/");
+    setSearchText("");
+  };
   return (
     <div className="header-wrapper">
       <div className="header-inner">
-        <h1>GranTip</h1>
+        <h1 onClick={homeHandler}>GranTip</h1>
         <div className="categoryFilter">
           <div>지역연고</div>
           <div>성적우수</div>

@@ -1,3 +1,4 @@
+import ScholarshipCalender from "../components/layout/ScholarshipCalender";
 import "./MyPage.css";
 import { useNavigate } from "react-router-dom";
 const MyPage = () => {
@@ -51,9 +52,8 @@ const MyPage = () => {
         </div>
       </div>
       <div className="scholar-calendar">
-        <div className="scholar-calender-label">장학 캘린더</div>
         <div className="calender-section">
-          <div className="calender-info">캘린더입니다.</div>
+          <ScholarshipCalender />
         </div>
       </div>
     </div>

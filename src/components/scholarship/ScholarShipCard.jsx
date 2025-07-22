@@ -1,13 +1,15 @@
 import "./ScholarshipCard.css";
 import myIcon from "../../assets/Icon.svg";
+import { useNavigate } from "react-router-dom";
 const ScholarshipCard = ({ data, className }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/detail/${data["번호"]}`);
+  };
   return (
-    <div
-      className={`card ${className || ""}`}
-      // onClick={라우팅처리- s_id를 통한 상세페이지 이동)}
-    >
-      <div className="card_name">{data.name}</div>
-      <div className="card_agency">{data.agency_name}</div>
+    <div className={`card ${className || ""}`} onClick={handleClick}>
+      <div className="card_name">{data["상품명"]}</div>
+      <div className="card_agency">{data["운영기관명"]}</div>
       {!className?.includes("card--tip") && (
         <div className="card_icon">
           <img src={myIcon} alt="버튼" />
