@@ -8,11 +8,12 @@ import lmyIcon from "../../assets/lnext.svg";
 const localizer = momentLocalizer(moment); // 또는 date-fns로도 가능
 
 const ScholarshipCalender = ({ subscribedScholarships }) => {
+  console.log(subscribedScholarships);
   const events = Array.isArray(subscribedScholarships)
     ? subscribedScholarships.map((s) => ({
-        title: s.name,
-        start: parseISO(s.startDate),
-        end: parseISO(s.endDate),
+        title: s["상품명"],
+        start: parseISO(s["모집시작일"]),
+        end: parseISO(s["모집종료일"]),
         allDay: true,
       }))
     : [];
