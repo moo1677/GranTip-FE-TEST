@@ -133,7 +133,8 @@
   border: none;
   color: #999;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 18px;
+  padding-right: 30px;
 }
 
 .no-recent {
@@ -141,4 +142,8 @@
   color: #aaa;
   font-size: 14px;
   text-align: center;
+}
+.suggestion-wrapper {
+  display: flex;
+  justify-content: space-between;
 }
