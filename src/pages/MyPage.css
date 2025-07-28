@@ -173,7 +173,7 @@ body {
 }
 
 .scholar-calendar {
-  height: 550px;
+  min-height: 500;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -182,7 +182,8 @@ body {
 
 .calender-section {
   width: 540px;
-  height: 486px;
+  min-height: 480;
   border-radius: var(--radius);
   background: #fff;
+  margin-bottom: 20px;
 }
