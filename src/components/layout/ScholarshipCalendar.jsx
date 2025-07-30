@@ -65,7 +65,7 @@ const ScholarshipCalendar = ({ subscribedScholarships }) => {
         fixedWeekCount={false}
         headerToolbar={false} // 기본 헤더 숨김
         eventContent={(
-          arg // 완전 커스텀 렌더링
+          arg // 장학금 라벨 커스텀 렌더링
         ) => (
           <div className="scholar-bar" title={arg.event.title}>
             <span className="ellipsed">{arg.event.title}</span>

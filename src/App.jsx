@@ -92,7 +92,7 @@ function AppContent() {
             path="/detail/:id"
             element={
               <PageTransitionWrapper>
-                <Detail />
+                <Detail isLoggedIn={isLoggedIn} />
               </PageTransitionWrapper>
             }
           />

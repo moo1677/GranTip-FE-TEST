@@ -5,6 +5,7 @@
   border-radius: 20px;
   background: #fff;
   box-shadow: 0px 10px 15px 0px rgba(0, 104, 255, 0.1);
+  user-select: none;
 }
 .detail h1 {
   padding-top: 23px;
@@ -180,4 +181,54 @@
   font-style: normal;
   font-weight: 800;
   line-height: normal;
+}
+
+.title-with-heart {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* h1 중앙 정렬 */
+  align-items: center;
+}
+
+.heart-container {
+  position: absolute;
+  right: 15%;
+  top: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.heart-icon {
+  color: white;
+  filter: drop-shadow(1px 2px 5px rgba(0, 0, 0, 0.3));
+  font-size: 30px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.heart-icon.liked {
+  color: red;
+  filter: none;
+}
+.heart-icon.pop {
+  animation: pop-heart 0.3s ease;
+}
+
+@keyframes pop-heart {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.heart-info {
+  margin-top: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.5);
 }

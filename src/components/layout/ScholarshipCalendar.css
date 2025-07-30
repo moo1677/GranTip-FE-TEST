@@ -42,9 +42,9 @@
 .fc {
   font-family: Inter, sans-serif;
   font-size: 14px;
-  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0px 5px 10px rgba(0, 104, 255, 0.05);
+  transition: height 0.5s ease-in-out;
 }
 .fc-toolbar {
   display: none;
@@ -72,6 +72,7 @@
   overflow: hidden; /* 넘치는 텍스트 숨김 */
   text-align: center;
   padding-top: 2px !important;
+  transition: 0.3s;
 }
 
 /* 2) 내부 .ellipsed 스팬에도 꼭 폭 100% 지정 */
@@ -84,7 +85,8 @@
 }
 
 .scholar-bar:hover {
-  background-color: #e6f7ff;
+  background-color: #f3f3f3;
+  border: none;
 }
 /* 1) 이벤트 링크(<a>) 자체의 배경·보더 제거 */
 .fc .fc-daygrid-event-harness .fc-event {
