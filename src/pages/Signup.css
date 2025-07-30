@@ -187,3 +187,12 @@ input:focus::placeholder {
 .search-none {
   margin-top: 40px;
 }
+.school-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.signup-dropdown-select,
+.signup-dropdown-select:focus {
+  border: none;
+  outline: none;
+}

@@ -11,8 +11,11 @@ import UserInfoEdit from "./pages/UserInfoEdit";
 import Search from "./pages/Search";
 import SearchBar from "./components/common/SearchBar";
 import Detail from "./pages/Detail";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ProtectedRoute from "./hooks/ProtectedRoute";
+
 function AppContent() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [inputText, setInputText] = useState("");
   const location = useLocation();
   const hideHeaderRoutes = ["/login", "/signup"];
@@ -22,7 +25,7 @@ function AppContent() {
       <AnimatePresence>
         {!hideHeader && (
           <PageTransitionWrapper>
-            <Header setSearchText={setInputText} />
+            <Header setSearchText={setInputText} isLoggedIn={isLoggedIn} />
           </PageTransitionWrapper>
         )}
       </AnimatePresence>
@@ -56,7 +59,9 @@ function AppContent() {
             path="/mypage"
             element={
               <PageTransitionWrapper>
-                <MyPage />
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <MyPage />
+                </ProtectedRoute>
               </PageTransitionWrapper>
             }
           />
@@ -64,7 +69,9 @@ function AppContent() {
             path="/edit"
             element={
               <PageTransitionWrapper>
-                <UserInfoEdit />
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <UserInfoEdit />
+                </ProtectedRoute>
               </PageTransitionWrapper>
             }
           />
@@ -85,7 +92,7 @@ function AppContent() {
             path="/detail/:id"
             element={
               <PageTransitionWrapper>
-                <Detail />
+                <Detail isLoggedIn={isLoggedIn} />
               </PageTransitionWrapper>
             }
           />

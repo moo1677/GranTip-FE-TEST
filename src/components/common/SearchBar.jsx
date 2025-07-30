@@ -155,7 +155,7 @@ const SearchBar = ({
             {recentKeywords.length > 0 ? (
               <ul>
                 {recentKeywords.map((item, index) => (
-                  <li key={index}>
+                  <li key={index} className="suggestion-wrapper">
                     <span
                       className="keyword-name"
                       onClick={() => handleSuggestionClick(item)}

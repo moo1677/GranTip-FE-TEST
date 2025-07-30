@@ -1,6 +1,6 @@
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
-const Header = ({ setSearchText }) => {
+const Header = ({ setSearchText, isLoggedIn }) => {
   const navigate = useNavigate();
   const homeHandler = () => {
     navigate("/");
@@ -17,11 +17,17 @@ const Header = ({ setSearchText }) => {
           <div>특수계층</div>
           <div>기타</div>
         </div>
-        <div className="user-menu">
-          <div onClick={() => navigate("/login")}>로그인</div>
-          <div>/</div>
-          <div onClick={() => navigate("/signup")}>회원가입</div>
-        </div>
+        {!isLoggedIn ? (
+          <div className="user-menu">
+            <div onClick={() => navigate("/login")}>로그인</div>
+            <div>/</div>
+            <div onClick={() => navigate("/signup")}>회원가입</div>
+          </div>
+        ) : (
+          <div className="user-menu">
+            <div onClick={() => navigate("/mypage")}>마이페이지</div>
+          </div>
+        )}
       </div>
     </div>
   );

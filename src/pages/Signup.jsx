@@ -42,6 +42,19 @@ const Signup = () => {
 
   const [gender, setGender] = useState("");
   const [current_school, setSelectedUniv] = useState("");
+  const universityTypes = [
+    { id: 1, name: "4년제(5~6년제포함)" },
+    { id: 2, name: "전문대(2~3년제)" },
+    { id: 3, name: "학점은행제 대학" },
+    { id: 4, name: "일반대학원" },
+    { id: 5, name: "전문대학원" },
+    { id: 6, name: "기술대학" },
+    { id: 7, name: "원격대학" },
+    { id: 8, name: "해외대학" },
+    { id: 9, name: "특정대학" },
+    { id: 10, name: "제한없음" },
+  ];
+  const [universityType, setUniversityType] = useState("");
   const [high_school, setSelectedHighSchool] = useState("");
   const [showUnivModal, setShowUnivModal] = useState(false);
   const [showHighModal, setShowHighModal] = useState(false);
@@ -62,7 +75,8 @@ const Signup = () => {
     password: password.value,
     gender: gender,
     current_school: current_school,
-    high_school: high_school.name,
+    universityType: universityType,
+    high_school: high_school,
     resident_address: resident_address,
     address: address,
     phone: phone.value,
@@ -213,23 +227,37 @@ const Signup = () => {
           {step === 2 && (
             <>
               <div className="signup-current-school">* 재학 중인 대학교</div>
-              <div
-                className={`signup-current-school-input ${
-                  current_school ? "active" : ""
-                }`}
-                onClick={() => setShowUnivModal(true)}
-              >
-                {current_school || "대학교를 선택해주세요"}
+              <div className="school-wrapper">
+                <div
+                  className={`signup-current-school-input ${
+                    current_school ? "active" : ""
+                  }`}
+                  onClick={() => setShowUnivModal(true)}
+                >
+                  {current_school || "대학교를 선택해주세요"}
+                </div>
+                {showUnivModal && (
+                  <SelectListModal
+                    title="대학교 검색"
+                    list={universityList}
+                    getLabel={(item) => item}
+                    onSelect={(item) => setSelectedUniv(item)}
+                    onClose={() => setShowUnivModal(false)}
+                  />
+                )}
+                <select
+                  className="signup-dropdown-select"
+                  name="median_income_ratio"
+                  onChange={(e) => setUniversityType(e.target.value)}
+                >
+                  <option value="">선택</option>
+                  {universityTypes.map((val) => (
+                    <option key={val.id} value={val.id}>
+                      {val.name}
+                    </option>
+                  ))}
+                </select>
               </div>
-              {showUnivModal && (
-                <SelectListModal
-                  title="대학교 검색"
-                  list={universityList}
-                  getLabel={(item) => item}
-                  onSelect={(item) => setSelectedUniv(item)}
-                  onClose={() => setShowUnivModal(false)}
-                />
-              )}
               <div className="address-info">
                 특정 대학 장학금 자격 여부를 확인하기 위해 사용됩니다.
               </div>

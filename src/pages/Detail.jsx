@@ -1,21 +1,47 @@
 import { parseSemesterRange } from "../utils/semesterParser";
 import { useParams } from "react-router-dom";
 import dummyData from "../data/Scholarship.json";
+import { AiFillHeart } from "react-icons/ai";
+import { useState } from "react";
 import "./Detail.css";
 // ... 상단 import는 그대로
 
-const Detail = () => {
+const Detail = ({ isLoggedIn }) => {
   const { id } = useParams();
+  const [liked, setLiked] = useState(false);
+  const [animate, setAnimate] = useState(false);
+  const handleHeart = () => {
+    if (!isLoggedIn) {
+      alert("로그인이 필요합니다");
+      return;
+    }
+    setLiked(!liked);
+    setAnimate(true);
+    setTimeout(() => setAnimate(false), 300);
+  };
   const scholarship = dummyData.find((item) => item["번호"] === parseInt(id));
   if (!scholarship) return <p>존재하지 않는 장학금입니다.</p>;
 
   if (scholarship["학과구분"]?.includes("제한없음")) {
     scholarship["학과구분"] = ["제한없음"];
   }
-
+  if (scholarship["대학구분"]?.includes("제한없음")) {
+    scholarship["대학구분"] = ["제한없음"];
+  }
   return (
     <div className="detail">
-      <h1>{scholarship["상품명"]}</h1>
+      <div className="title-with-heart">
+        <h1>{scholarship["상품명"]}</h1>
+        <div className="heart-container">
+          <AiFillHeart
+            onClick={handleHeart}
+            className={`heart-icon ${liked ? "liked" : ""} ${
+              animate ? "pop" : ""
+            }`}
+          />
+          <div className="heart-info">좋아요</div>
+        </div>
+      </div>
       <div className="detail-wrapper">
         <div className="detail-section">
           <div className="detail-name">{scholarship["운영기관명"]}</div>

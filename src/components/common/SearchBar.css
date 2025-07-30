@@ -30,6 +30,7 @@
   padding-top: 0;
   width: 900px;
   box-shadow: 3px 3px 20px 0px rgba(0, 104, 255, 0.2);
+  padding-bottom: 4px;
   transition: 1s ease;
 }
 .search.custom.action {
@@ -133,7 +134,8 @@
   border: none;
   color: #999;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 18px;
+  padding-right: 30px;
 }
 
 .no-recent {
@@ -141,4 +143,8 @@
   color: #aaa;
   font-size: 14px;
   text-align: center;
+}
+.suggestion-wrapper {
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,6 +1,7 @@
-import ScholarshipCalender from "../components/layout/ScholarshipCalender";
+import ScholarshipCalendar from "../components/layout/ScholarshipCalendar";
 import "./MyPage.css";
 import { useNavigate } from "react-router-dom";
+import data from "../data/Scholarship.json";
 const MyPage = () => {
   const navigate = useNavigate();
   let user = {
@@ -53,7 +54,7 @@ const MyPage = () => {
       </div>
       <div className="scholar-calendar">
         <div className="calender-section">
-          <ScholarshipCalender />
+          <ScholarshipCalendar subscribedScholarships={data} />
         </div>
       </div>
     </div>
