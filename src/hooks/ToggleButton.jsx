@@ -1,13 +1,8 @@
-import { useState } from "react";
 import "./ToggleButton.css";
 
-const ToggleButton = ({ onChange }) => {
-  const [selected, setSelected] = useState(false);
-
+const ToggleButton = ({ selected, onChange }) => {
   const handleClick = () => {
-    const newSelected = !selected;
-    setSelected(newSelected);
-    if (onChange) onChange(newSelected); // 부모에 선택 여부 전달
+    onChange?.(!selected); // 상태 반전해서 부모에 전달
   };
 
   return (
@@ -15,10 +10,7 @@ const ToggleButton = ({ onChange }) => {
       className={`toggle-btn ${selected ? "selected" : ""}`}
       onClick={handleClick}
     >
-      <button
-        className={`toggle ${selected ? "selected" : ""}`}
-        onClick={handleClick}
-      />
+      <button className={`toggle ${selected ? "selected" : ""}`} />
     </div>
   );
 };

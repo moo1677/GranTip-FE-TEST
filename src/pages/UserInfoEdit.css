@@ -113,7 +113,15 @@
   border: none;
   text-align: center;
 }
+.grade-input-field::-webkit-outer-spin-button,
+.grade-input-field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+.grade-input-field {
+  -moz-appearance: textfield;
+}
 /* 소득 정보 */
 .income-section {
   padding: 0 100px;

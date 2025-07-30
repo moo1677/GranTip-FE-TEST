@@ -1,15 +1,55 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "./RegionSelectModal.css";
-import regionData from "../../data/kr_regions.json";
 
 const RegionSelectModal = ({ onSelect, onClose }) => {
-  const provinces = Object.keys(regionData);
-  const [selectedProvince, setSelectedProvince] = useState("");
+  const [provinces, setProvinces] = useState([]); // 시/도
+  const [cities, setCities] = useState([]); // 시/군/구
+  const [towns, setTowns] = useState([]); // 읍/면/동
 
-  const handleSelectDistrict = (district) => {
-    const full = `${selectedProvince} ${district}`;
-    onSelect?.(full); // 전체 주소 문자열로 전달
+  const [selectedProvince, setSelectedProvince] = useState(null); // { id, regionName }
+  const [selectedCity, setSelectedCity] = useState(null); // { id, regionName }
+
+  // 1단계: 시/도 로드
+  useEffect(() => {
+    axios
+      .get("/api/region")
+      .then((res) => setProvinces(res.data.result))
+      .catch((err) => console.error("시/도 불러오기 실패", err));
+  }, []);
+
+  // 2단계: 시/군/구 로드
+  useEffect(() => {
+    if (!selectedProvince) return;
+    axios
+      .get(`/api/city?regionId=${selectedProvince.id}`)
+      .then((res) => setCities(res.data.result))
+      .catch((err) => console.error("시/군/구 불러오기 실패", err));
+  }, [selectedProvince]);
+
+  // 3단계: 읍/면/동 로드
+  useEffect(() => {
+    if (!selectedCity) return;
+    axios
+      .get(`/api/town?cityId=${selectedCity.id}`)
+      .then((res) => setTowns(res.data.result))
+      .catch((err) => console.error("읍/면/동 불러오기 실패", err));
+  }, [selectedCity]);
+
+  const handleSelectTown = (town) => {
+    const full = `${selectedProvince.regionName} ${selectedCity.regionName} ${town.regionName}`;
+    onSelect?.(full);
     onClose?.();
+  };
+
+  const handleBack = () => {
+    if (selectedCity) {
+      setSelectedCity(null);
+      setTowns([]);
+    } else if (selectedProvince) {
+      setSelectedProvince(null);
+      setCities([]);
+    }
   };
 
   return (
@@ -20,42 +60,58 @@ const RegionSelectModal = ({ onSelect, onClose }) => {
       >
         <div className="region-modal-header">
           <h3>지역 선택</h3>
-          {selectedProvince && (
-            <button
-              className="region-back-btn"
-              onClick={() => setSelectedProvince("")}
-            >
+          {(selectedProvince || selectedCity) && (
+            <button className="region-back-btn" onClick={handleBack}>
               뒤로
             </button>
           )}
         </div>
-        {!selectedProvince ? (
+
+        {/* 1단계: 시/도 */}
+        {!selectedProvince && (
           <ul className="region-list">
             {provinces.map((prov) => (
               <li
-                key={prov}
+                key={prov.id}
                 className="region-item"
                 onClick={() => setSelectedProvince(prov)}
               >
-                {prov}
+                {prov.regionName}
               </li>
             ))}
           </ul>
-        ) : (
-          <>
-            <ul className="region-list">
-              {regionData[selectedProvince].map((district) => (
-                <li
-                  key={district}
-                  className="region-item"
-                  onClick={() => handleSelectDistrict(district)}
-                >
-                  {district}
-                </li>
-              ))}
-            </ul>
-          </>
         )}
+
+        {/* 2단계: 시/군/구 */}
+        {selectedProvince && !selectedCity && (
+          <ul className="region-list">
+            {cities.map((city) => (
+              <li
+                key={city.id}
+                className="region-item"
+                onClick={() => setSelectedCity(city)}
+              >
+                {city.regionName}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {/* 3단계: 읍/면/동 */}
+        {selectedProvince && selectedCity && (
+          <ul className="region-list">
+            {towns.map((town) => (
+              <li
+                key={town.id}
+                className="region-item"
+                onClick={() => handleSelectTown(town)}
+              >
+                {town.regionName}
+              </li>
+            ))}
+          </ul>
+        )}
+
         <button className="region-close-btn" onClick={onClose}>
           닫기
         </button>

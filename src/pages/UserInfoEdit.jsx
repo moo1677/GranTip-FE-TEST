@@ -23,6 +23,35 @@ const UserInfoEdit = () => {
   /*연고지*/
   const [address, setAddress] = useState("");
   const [showAddressModal, setShowAddressModal] = useState("");
+  /* 학력 정보 */
+  const [highSchoolGrade, setHighSchoolGrade] = useState(""); // 고등학교 내신 평균 등급
+  const [csatGrade, setCsatGrade] = useState(""); // 수능 등급
+  /*성적 관련*/
+  const [recentGrade, setRecentGrade] = useState({
+    credit: "", // 이수 학점
+    average: "", // 평균 학점
+    scale: 4.5, // 성적 기준 (4.5 or 4.3)
+  });
+  const [previousGrade, setPreviousGrade] = useState({
+    credit: "",
+    average: "",
+    scale: 4.5,
+  });
+  /*특수계층*/
+  const [isDisabled, setIsDisabled] = useState(false); // 장애인
+  const [isMultiChild, setIsMultiChild] = useState(false); // 다자녀
+  const [isVeteran, setIsVeteran] = useState(false); // 국가유공자 또는 보훈자
+  const [isSingleParent, setIsSingleParent] = useState(false); // 한부모
+  const [isOrphan, setIsOrphan] = useState(false); // 소년소녀 가장
+  const [isLowIncome, setIsLowIncome] = useState(false); // 저소득층
+  const [isMulticultural, setIsMulticultural] = useState(false); // 다문화
+  const [isNorthKoreanDefector, setIsNorthKoreanDefector] = useState(false); // 북한이탈주민
+  /*특기자*/
+  const [isTalented, setIsTalented] = useState(false); // 특기자 활동 경력
+  /*소득정보*/
+  const [scholarshipSupportLevel, setScholarshipSupportLevel] = useState(""); // 한국장학재단 학자금 지원구간 (1~9)
+  const [medianIncomeRatio, setMedianIncomeRatio] = useState(""); // 기준 중위소득 비율 (예: "130")
+  const [incomePercentile, setIncomePercentile] = useState(""); // 소득 분위 (예: "5")
 
   return (
     <div className="user-info-edit-container">
@@ -126,31 +155,70 @@ const UserInfoEdit = () => {
       <div className="toggle-section">
         <div className="label-text">• 특수 계층</div>
         <div className="select-list">
-          {[
-            "장애인에 해당돼요",
-            "다자녀 가정에 해당돼요",
-            "국가유공자 또는 보훈자에 해당돼요",
-            "한부모 가정에 해당돼요",
-            "소년소녀 가장에 해당돼요",
-            "저소득층에 해당돼요",
-            "다문화 가정 해당돼요",
-            "북한이탈주민에 해당돼요",
-          ].map((label, idx) => (
-            <div key={idx}>
-              <div className="toggle-row">
-                <div className="toggle-label">{label}</div>
-                <ToggleButton />
-              </div>
-              <div className="section" />
+          <div className="toggle-row">
+            <div className="toggle-label">장애인에 해당돼요</div>
+            <ToggleButton selected={isDisabled} onChange={setIsDisabled} />
+          </div>
+          <div className="section" />
+
+          <div className="toggle-row">
+            <div className="toggle-label">다자녀 가정에 해당돼요</div>
+            <ToggleButton selected={isMultiChild} onChange={setIsMultiChild} />
+          </div>
+          <div className="section" />
+
+          <div className="toggle-row">
+            <div className="toggle-label">
+              국가유공자 또는 보훈자에 해당돼요
             </div>
-          ))}
+            <ToggleButton selected={isVeteran} onChange={setIsVeteran} />
+          </div>
+          <div className="section" />
+
+          <div className="toggle-row">
+            <div className="toggle-label">한부모 가정에 해당돼요</div>
+            <ToggleButton
+              selected={isSingleParent}
+              onChange={setIsSingleParent}
+            />
+          </div>
+          <div className="section" />
+
+          <div className="toggle-row">
+            <div className="toggle-label">소년소녀 가장에 해당돼요</div>
+            <ToggleButton selected={isOrphan} onChange={setIsOrphan} />
+          </div>
+          <div className="section" />
+
+          <div className="toggle-row">
+            <div className="toggle-label">저소득층에 해당돼요</div>
+            <ToggleButton selected={isLowIncome} onChange={setIsLowIncome} />
+          </div>
+          <div className="section" />
+
+          <div className="toggle-row">
+            <div className="toggle-label">다문화 가정 해당돼요</div>
+            <ToggleButton
+              selected={isMulticultural}
+              onChange={setIsMulticultural}
+            />
+          </div>
+          <div className="section" />
+
+          <div className="toggle-row">
+            <div className="toggle-label">북한이탈주민에 해당돼요</div>
+            <ToggleButton
+              selected={isNorthKoreanDefector}
+              onChange={setIsNorthKoreanDefector}
+            />
+          </div>
         </div>
 
         <div className="label-text">• 특기자</div>
         <div className="select-list-none">
           <div className="toggle-row">
             <div className="toggle-label">특기자 활동 경력이 있어요</div>
-            <ToggleButton />
+            <ToggleButton selected={isTalented} onChange={setIsTalented} />
           </div>
         </div>
         <div className="select-list-info">
@@ -172,11 +240,125 @@ const UserInfoEdit = () => {
             <div className="toggle-label">수능 등급</div>
             <input className="grade-input-field" />
           </div>
-          <div className="section" />
-
+        </div>
+        <div className="label-text">• 기이수 학기 성적 (전체 학기)</div>
+        <div className="select-list">
           <div className="toggle-row">
-            <div className="toggle-label">대학교 평균 학점</div>
-            <input className="grade-input-field" />
+            <div className="toggle-label">평균 학점</div>
+            <input
+              className="grade-input-field"
+              type="number"
+              min="0"
+              max="4.5"
+              step="0.01"
+              placeholder="예: 3.75"
+            />
+          </div>
+        </div>
+        <div className="label-text">• 직전 학기 성적</div>
+        <div className="select-list">
+          <div className="toggle-row">
+            <div className="toggle-label">이수 학점</div>
+            <input
+              className="grade-input-field"
+              type="number"
+              min="0"
+              max="30"
+              placeholder="예: 18"
+              value={recentGrade.credit}
+              onChange={(e) =>
+                setRecentGrade((prev) => ({ ...prev, credit: e.target.value }))
+              }
+            />
+          </div>
+          <div className="section" />
+          <div className="toggle-row">
+            <div className="toggle-label">평균 학점</div>
+            <input
+              className="grade-input-field"
+              type="number"
+              min="0"
+              max="4.5"
+              step="0.01"
+              placeholder="예: 3.75"
+              value={recentGrade.average}
+              onChange={(e) =>
+                setRecentGrade((prev) => ({ ...prev, average: e.target.value }))
+              }
+            />
+          </div>
+          <div className="section" />
+          <div className="toggle-row">
+            <div className="toggle-label">성적 기준</div>
+            <select
+              className="dropdown-select"
+              value={recentGrade.scale}
+              onChange={(e) =>
+                setRecentGrade((prev) => ({
+                  ...prev,
+                  scale: parseFloat(e.target.value),
+                }))
+              }
+            >
+              <option value="4.5">4.5</option>
+              <option value="4.3">4.3</option>
+            </select>
+          </div>
+        </div>
+        <div className="label-text">• 2학기 전 성적 (직전전 학기)</div>
+        <div className="select-list">
+          <div className="toggle-row">
+            <div className="toggle-label">이수 학점</div>
+            <input
+              className="grade-input-field"
+              type="number"
+              min="0"
+              max="30"
+              placeholder="예: 18"
+              value={previousGrade.credit}
+              onChange={(e) =>
+                setPreviousGrade((prev) => ({
+                  ...prev,
+                  credit: e.target.value,
+                }))
+              }
+            />
+          </div>
+          <div className="section" />
+          <div className="toggle-row">
+            <div className="toggle-label">평균 학점</div>
+            <input
+              className="grade-input-field"
+              type="number"
+              min="0"
+              max="4.5"
+              step="0.01"
+              placeholder="예: 3.75"
+              value={previousGrade.average}
+              onChange={(e) =>
+                setPreviousGrade((prev) => ({
+                  ...prev,
+                  average: e.target.value,
+                }))
+              }
+            />
+          </div>
+          <div className="section" />
+          <div className="toggle-row">
+            <div className="toggle-label">성적 기준</div>
+            <select
+              className="dropdown-select"
+              value={previousGrade.scale}
+              onChange={(e) =>
+                setPreviousGrade((prev) => ({
+                  ...prev,
+                  scale: parseFloat(e.target.value),
+                }))
+              }
+            >
+              <option value="4.5">4.5</option>
+              <option value="4.3">4.3</option>
+            </select>
           </div>
         </div>
       </div>
@@ -189,6 +371,8 @@ const UserInfoEdit = () => {
             <select
               className="dropdown-select"
               name="scholarship_support_interval"
+              value={scholarshipSupportLevel}
+              onChange={(e) => setScholarshipSupportLevel(e.target.value)}
             >
               <option value="">선택</option>
               {[...Array(9)].map((_, i) => (
@@ -202,7 +386,12 @@ const UserInfoEdit = () => {
 
           <div className="toggle-row">
             <div className="toggle-label">기준 중위소득 비율</div>
-            <select className="dropdown-select" name="median_income_ratio">
+            <select
+              className="dropdown-select"
+              name="median_income_ratio"
+              value={medianIncomeRatio}
+              onChange={(e) => setMedianIncomeRatio(e.target.value)}
+            >
               <option value="">선택</option>
               {["50", "70", "100", "130", "150", "180", "200"].map((val) => (
                 <option key={val} value={val}>
@@ -215,7 +404,12 @@ const UserInfoEdit = () => {
 
           <div className="toggle-row">
             <div className="toggle-label">소득 분위</div>
-            <select className="dropdown-select" name="income_percentile_band">
+            <select
+              className="dropdown-select"
+              name="income_percentile_band"
+              value={incomePercentile}
+              onChange={(e) => setIncomePercentile(e.target.value)}
+            >
               <option value="">선택</option>
               {[...Array(8)].map((_, i) => (
                 <option key={i + 1} value={i + 1}>
