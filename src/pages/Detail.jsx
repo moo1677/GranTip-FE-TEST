@@ -12,7 +12,11 @@ const Detail = ({ isLoggedIn }) => {
   const [liked, setLiked] = useState(false);
   const [animate, setAnimate] = useState(false);
   const [scholarship, setScholarship] = useState(null);
-
+  const infoFields = [
+    { key: "departmentCategory", label: "학과 구분" },
+    { key: "universityCategories", label: "대학 구분" },
+    { key: "gradeCategory", label: "학년 구분" },
+  ];
   useEffect(() => {
     const fetchScholarship = async () => {
       try {
@@ -115,21 +119,18 @@ const Detail = ({ isLoggedIn }) => {
         </div>
         <div className="detail-info-wrapper">
           <h3>주요 정보</h3>
-          {["departmentCategory", "universityCategories", "gradeCategory"].map(
-            (key) => (
-              <div className="detail-info-card" key={key}>
-                <h4>{key}</h4>
-                <div className="card-info">
-                  {key === "gradeCategory" && Array.isArray(scholarship[key])
+          {infoFields.map(({ key, label }) => (
+            <div className="detail-info-card" key={key}>
+              <h4>{label}</h4>
+              <div className="card-info">
+                {Array.isArray(scholarship[key]) && scholarship[key].length > 0
+                  ? key === "gradeCategory"
                     ? parseSemesterRange(scholarship[key])
-                    : Array.isArray(scholarship[key]) &&
-                      scholarship[key].length > 0
-                    ? scholarship[key].join(", ")
-                    : "해당사항 없음"}
-                </div>
+                    : scholarship[key].join(", ")
+                  : "해당사항 없음"}
               </div>
-            )
-          )}
+            </div>
+          ))}
         </div>
       </div>
 
