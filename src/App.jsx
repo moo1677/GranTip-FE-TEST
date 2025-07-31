@@ -13,7 +13,8 @@ import SearchBar from "./components/common/SearchBar";
 import Detail from "./pages/Detail";
 import { useState, useEffect } from "react";
 import ProtectedRoute from "./hooks/ProtectedRoute";
-
+import Footer from "./components/layout/Footer";
+import ScrollToTop from "./utils/ScrollToTop";
 function AppContent() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [inputText, setInputText] = useState("");
@@ -29,6 +30,7 @@ function AppContent() {
           </PageTransitionWrapper>
         )}
       </AnimatePresence>
+      <ScrollToTop />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route
@@ -97,6 +99,11 @@ function AppContent() {
             }
           />
         </Routes>
+        {!hideHeader && (
+          <PageTransitionWrapper>
+            <Footer />
+          </PageTransitionWrapper>
+        )}
       </AnimatePresence>
     </>
   );
