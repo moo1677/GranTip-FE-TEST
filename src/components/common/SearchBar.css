@@ -65,14 +65,16 @@
   padding: 0 20px;
 }
 .searchbar {
+  display: flex;
+  align-items: center;
   flex: 1;
+  min-height: 50px;
   font-size: 32px;
   font-weight: 500;
   color: #000000;
   margin-bottom: 5px;
   border: none;
   border-bottom: 2px solid #d1d1d1;
-  padding-top: 10px;
   outline: none;
   transition: 0.5s ease;
   margin-left: 20px;

@@ -7,13 +7,11 @@
   box-shadow: 0px 10px 15px 0px rgba(0, 104, 255, 0.1);
   user-select: none;
 }
-.detail h1 {
+.detail-h1 {
   padding-top: 23px;
   color: #0068ff;
   text-align: center;
   font-family: Inter;
-  font-size: 30px;
-  font-weight: 800;
 }
 .detail-wrapper {
   width: 650px;
@@ -86,7 +84,10 @@
   border-radius: 20px;
   background: #fff;
   box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.1);
-  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .detail h4 {
   color: rgba(0, 0, 0, 0.7);
@@ -94,7 +95,7 @@
   font-family: Inter;
   font-size: 15px;
   font-weight: 400;
-  margin-bottom: 3px;
+  margin-bottom: 1px;
 }
 .card-info {
   color: rgba(0, 0, 0, 0.5);
@@ -194,7 +195,7 @@
 .heart-container {
   position: absolute;
   right: 15%;
-  top: 65%;
+  top: 43%;
   display: flex;
   flex-direction: column;
   align-items: center;
