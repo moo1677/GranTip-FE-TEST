@@ -1,4 +1,4 @@
-import "./ScholarshipCard.css";
+import "./ScholarShipCard.css";
 import myIcon from "../../assets/Icon.svg";
 import { useNavigate } from "react-router-dom";
 const ScholarshipCard = ({ data, className }) => {
