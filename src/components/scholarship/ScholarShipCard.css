@@ -50,14 +50,15 @@
   font-weight: 400;
 }
 .card_name {
-  width: 160px;
+  white-space: pre-line;
+  width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   word-break: keep-all;
   color: rgba(0, 0, 0, 0.65);
   font-family: Inter;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
 }
 .card_agency {

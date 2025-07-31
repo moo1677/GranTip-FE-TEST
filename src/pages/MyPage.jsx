@@ -1,7 +1,6 @@
 import ScholarshipCalendar from "../components/layout/ScholarshipCalendar";
 import "./MyPage.css";
 import { useNavigate } from "react-router-dom";
-import data from "../data/Scholarship.json";
 const MyPage = () => {
   const navigate = useNavigate();
   let user = {

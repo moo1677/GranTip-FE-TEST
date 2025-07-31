@@ -103,6 +103,7 @@
   font-family: Inter;
   font-size: 13px;
   font-weight: 400;
+  word-break: keep-all;
 }
 .detail-more-wrapper,
 .detail-more-wrapper-bottom,
