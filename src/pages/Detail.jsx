@@ -29,6 +29,7 @@ const Detail = ({ isLoggedIn }) => {
         alert("서버 오류로 장학금 목록을 불러올 수 없습니다.");
       }
     };
+    console.log(BASE_URL);
     fetchScholarship();
   }, [id]);
 
