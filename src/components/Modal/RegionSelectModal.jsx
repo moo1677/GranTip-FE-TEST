@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { BASE_URL } from "../../api/config";
 import "./RegionSelectModal.css";
 
-const RegionSelectModal = ({ onSelect, onClose }) => {
+const RegionSelectModal = ({ onSelect, onClose, onId }) => {
   const [provinces, setProvinces] = useState([]); // 시/도
   const [cities, setCities] = useState([]); // 시/군/구
   const [towns, setTowns] = useState([]); // 읍/면/동
@@ -13,16 +14,22 @@ const RegionSelectModal = ({ onSelect, onClose }) => {
   // 1단계: 시/도 로드
   useEffect(() => {
     axios
-      .get("/api/region")
-      .then((res) => setProvinces(res.data.result))
-      .catch((err) => console.error("시/도 불러오기 실패", err));
+      .get(`${BASE_URL}/api/regions/root`)
+      .then((res) => {
+        console.log("시도 API 응답 확인:", res.data.result);
+        setProvinces(res.data.result || []);
+      })
+      .catch((err) => {
+        console.error("시도 불러오기 실패", err);
+        setProvinces([]); // 방어
+      });
   }, []);
 
   // 2단계: 시/군/구 로드
   useEffect(() => {
     if (!selectedProvince) return;
     axios
-      .get(`/api/city?regionId=${selectedProvince.id}`)
+      .get(`${BASE_URL}/api/regions/${selectedProvince.id}/children`)
       .then((res) => setCities(res.data.result))
       .catch((err) => console.error("시/군/구 불러오기 실패", err));
   }, [selectedProvince]);
@@ -31,15 +38,18 @@ const RegionSelectModal = ({ onSelect, onClose }) => {
   useEffect(() => {
     if (!selectedCity) return;
     axios
-      .get(`/api/town?cityId=${selectedCity.id}`)
+      .get(`${BASE_URL}/api/regions/${selectedCity.id}/children`)
       .then((res) => setTowns(res.data.result))
       .catch((err) => console.error("읍/면/동 불러오기 실패", err));
   }, [selectedCity]);
 
   const handleSelectTown = (town) => {
     const full = `${selectedProvince.regionName} ${selectedCity.regionName} ${town.regionName}`;
+    const fullid = `${selectedProvince.id} ${selectedCity.id} ${town.id}`;
+    console.log(fullid);
     onSelect?.(full);
     onClose?.();
+    onId?.(town.id);
   };
 
   const handleBack = () => {

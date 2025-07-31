@@ -15,7 +15,7 @@ import { useState, useEffect } from "react";
 import ProtectedRoute from "./hooks/ProtectedRoute";
 
 function AppContent() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [inputText, setInputText] = useState("");
   const location = useLocation();
   const hideHeaderRoutes = ["/login", "/signup"];
@@ -43,7 +43,7 @@ function AppContent() {
             path="/login"
             element={
               <PageTransitionWrapper>
-                <Login />
+                <Login setIsLoggedIn={setIsLoggedIn} />
               </PageTransitionWrapper>
             }
           />

@@ -5,9 +5,11 @@ import useFormInput from "../hooks/useFormInput";
 import SelectListModal from "../components/Modal/SelectListModal";
 import universityList from "../data/universityList";
 import highSchools from "../data/highSchools_labeled.js";
-import AddressSearch from "../components/Modal/AddressSearch";
 import RegionSelectModal from "../components/Modal/RegionSelectModal";
 import EmailAuthModal from "../components/Modal/EmailAuthModal";
+import axios from "axios";
+import { BASE_URL } from "../api/config.js";
+
 const Signup = () => {
   const [step, setStep] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -42,7 +44,7 @@ const Signup = () => {
 
   const [gender, setGender] = useState("");
   const [current_school, setSelectedUniv] = useState("");
-  const universityTypes = [
+  const UniversityCategoryIds = [
     { id: 1, name: "4년제(5~6년제포함)" },
     { id: 2, name: "전문대(2~3년제)" },
     { id: 3, name: "학점은행제 대학" },
@@ -54,7 +56,7 @@ const Signup = () => {
     { id: 9, name: "특정대학" },
     { id: 10, name: "제한없음" },
   ];
-  const [universityType, setUniversityType] = useState("");
+  const [universityCategoryId, setUniversityCategoryId] = useState(0);
   const [high_school, setSelectedHighSchool] = useState("");
   const [showUnivModal, setShowUnivModal] = useState(false);
   const [showHighModal, setShowHighModal] = useState(false);
@@ -63,6 +65,10 @@ const Signup = () => {
   const [resident_address, setResidentAddress] = useState("");
   const [address, setAddress] = useState("");
   const [showAddressModal, setShowAddressModal] = useState("");
+
+  const [addressId, setAddressId] = useState(0);
+  const [residentAddressId, setResidentAddressId] = useState(0);
+
   const phone = useFormInput({
     initialValue: "",
     validate: (v) => /^01[016789]-?\d{3,4}-?\d{4}$/.test(v.replace(/-/g, "")),
@@ -71,17 +77,19 @@ const Signup = () => {
 
   const formData = {
     email: email.value,
-    username: username.value,
     password: password.value,
-    gender: gender,
-    current_school: current_school,
-    universityType: universityType,
-    high_school: high_school,
-    resident_address: resident_address,
-    address: address,
+    username: username.value,
+    role: "USER",
     phone: phone.value,
+    universityCategoryId: universityCategoryId.id,
+    currentSchool: current_school,
+    highSchool: high_school,
+    universityYear: "SEVENTH_SEMESTER",
+    gender: gender,
+    addressId: addressId,
+    residentAddressId: residentAddressId,
+    available: true,
   };
-
   const navigate = useNavigate();
 
   const isFormValid =
@@ -92,6 +100,26 @@ const Signup = () => {
     password.value.trim() !== "" &&
     passwordRe.value.trim() !== "" &&
     gender !== "";
+  const handleSignup = async () => {
+    try {
+      const res = await axios.post(`${BASE_URL}/auth/signup`, formData);
+      console.log("서버 응답 전체:", res);
+      if (res.data.success) {
+        alert("회원가입 성공!");
+        navigate("/login");
+      } else {
+        console.log("실패 응답 데이터:", res.data);
+        alert("회원가입 실패: " + (res.data.message || "알 수 없는 이유"));
+      }
+    } catch (err) {
+      console.error("서버 오류:", err);
+      const msg =
+        err.response?.data?.message ||
+        err.message ||
+        "서버 오류 또는 네트워크 문제 발생";
+      alert("회원가입 실패: " + msg);
+    }
+  };
 
   return (
     <div className="page-wrapper">
@@ -187,8 +215,8 @@ const Signup = () => {
                   <input
                     type="radio"
                     name="gender"
-                    value="남성"
-                    checked={gender === "남성"}
+                    value="MALE"
+                    checked={gender === "MALE"}
                     onChange={(e) => setGender(e.target.value)}
                   />
                   남성
@@ -197,21 +225,11 @@ const Signup = () => {
                   <input
                     type="radio"
                     name="gender"
-                    value="여성"
-                    checked={gender === "여성"}
+                    value="FEMALE"
+                    checked={gender === "FEMALE"}
                     onChange={(e) => setGender(e.target.value)}
                   />
                   여성
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="기타"
-                    checked={gender === "기타"}
-                    onChange={(e) => setGender(e.target.value)}
-                  />
-                  기타
                 </label>
               </div>
 
@@ -248,10 +266,16 @@ const Signup = () => {
                 <select
                   className="signup-dropdown-select"
                   name="median_income_ratio"
-                  onChange={(e) => setUniversityType(e.target.value)}
+                  onChange={(e) => {
+                    const id = parseInt(e.target.value);
+                    const selected = UniversityCategoryIds.find(
+                      (val) => val.id === id
+                    );
+                    setUniversityCategoryId(selected);
+                  }}
                 >
                   <option value="">선택</option>
-                  {universityTypes.map((val) => (
+                  {UniversityCategoryIds.map((val) => (
                     <option key={val.id} value={val.id}>
                       {val.name}
                     </option>
@@ -292,9 +316,10 @@ const Signup = () => {
                 {resident_address ? resident_address : "거주지를 선택해주세요"}
               </div>
               {showResidentModal && (
-                <AddressSearch
-                  onSelect={setResidentAddress}
+                <RegionSelectModal
+                  onSelect={(item) => setResidentAddress(item)}
                   onClose={() => setShowResidentModal(false)}
+                  onId={(item) => setResidentAddressId(item)}
                 />
               )}
               <div className="address-info">
@@ -312,6 +337,7 @@ const Signup = () => {
                 <RegionSelectModal
                   onSelect={(item) => setAddress(item)}
                   onClose={() => setShowAddressModal(false)}
+                  onId={(item) => setAddressId(item)}
                 />
               )}
               <div className="address-info">
@@ -337,9 +363,7 @@ const Signup = () => {
               <button
                 className={`signup-btn ${isFormValid ? "active" : ""}`}
                 disabled={!isFormValid}
-                onClick={() => {
-                  console.log(formData);
-                }}
+                onClick={handleSignup}
               >
                 회원가입
               </button>

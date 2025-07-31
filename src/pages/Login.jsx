@@ -2,7 +2,8 @@ import "./Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-const Login = () => {
+import { BASE_URL } from "../api/config.js";
+const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [isFocused, setIsFocused] = useState(false);
@@ -34,16 +35,29 @@ const Login = () => {
 
   const loginProcess = async () => {
     try {
-      const result = await axios.post("localhost:8080/auth/login", {
-        loginId: email,
-        password: password,
+      const res = await axios.post(`${BASE_URL}/auth/login`, {
+        email,
+        password,
       });
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
 
-    navigate("/");
+      const { success, message, result } = res.data;
+
+      if (!success) {
+        alert(message || "로그인 실패");
+        return;
+      }
+
+      console.log("✅ 로그인 성공:", result);
+      // 예: 토큰 저장
+      if (result?.token) {
+        localStorage.setItem("token", result.token);
+      }
+      setIsLoggedIn(true);
+      navigate("/");
+    } catch (error) {
+      console.error("❌ 로그인 오류:", error);
+      alert("서버 오류입니다. 잠시 후 다시 시도해주세요.");
+    }
   };
 
   const signupProcess = () => {

@@ -3,7 +3,6 @@ import highSchools from "../data/highSchools_labeled.js";
 import universityList from "../data/universityList.js";
 import gradeList from "../data/gradeList.js";
 import SelectListModal from "../components/Modal/SelectListModal.jsx";
-import AddressSearch from "../components/Modal/AddressSearch.jsx";
 import RegionSelectModal from "../components/Modal/RegionSelectModal.jsx";
 import "./UserInfoEdit.css";
 import { useState } from "react";
@@ -129,8 +128,8 @@ const UserInfoEdit = () => {
           </button>
         </div>
         {showResidentModal && (
-          <AddressSearch
-            onSelect={setResidentAddress}
+          <RegionSelectModal
+            onSelect={(item) => setResidentAddress(item)}
             onClose={() => setShowResidentModal(false)}
           />
         )}
