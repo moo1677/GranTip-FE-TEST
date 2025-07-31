@@ -98,7 +98,7 @@ const Search = () => {
       <div className="search-btn-wrapper">
         {categories.map((cat) => (
           <div
-            key={cat}
+            key={cat.search}
             className={`search-category-btn${
               category === cat ? " active" : ""
             }`}
