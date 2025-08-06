@@ -15,6 +15,10 @@
     {
       "source": "/user/(.*)",
       "destination": "http://15.165.244.204:8080/user/$1"
+    },
+    {
+      "source": "/user",
+      "destination": "http://15.165.244.204:8080/user"
     }
   ]
 }

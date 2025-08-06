@@ -67,9 +67,11 @@ const MyPage = () => {
       </div>
       <div className="scholar-info">
         <h3>마감 임박 장학금</h3>
-        <div className="tip-more" onClick={() => navigate("/like")}>
-          더보기
-        </div>
+        {likeInfo.length !== 0 && (
+          <div className="tip-more" onClick={() => navigate("/like")}>
+            더보기
+          </div>
+        )}
         <div className="scholar-info-list">
           {likeInfo.length > 0 &&
             [...likeInfo] // 원본 변경 방지용 복사
