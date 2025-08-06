@@ -16,7 +16,6 @@ const RegionSelectModal = ({ onSelect, onClose, onId }) => {
     axios
       .get(`${BASE_URL}/api/regions/root`)
       .then((res) => {
-        console.log("시도 API 응답 확인:", res.data.result);
         setProvinces(res.data.result || []);
       })
       .catch((err) => {
@@ -45,8 +44,6 @@ const RegionSelectModal = ({ onSelect, onClose, onId }) => {
 
   const handleSelectTown = (town) => {
     const full = `${selectedProvince.regionName} ${selectedCity.regionName} ${town.regionName}`;
-    const fullid = `${selectedProvince.id} ${selectedCity.id} ${town.id}`;
-    console.log(fullid);
     onSelect?.(full);
     onClose?.();
     onId?.(town.id);

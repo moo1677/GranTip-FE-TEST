@@ -1,11 +1,28 @@
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
-const Header = ({ setSearchText, isLoggedIn }) => {
+import api from "../../utils/axios";
+import { useEffect } from "react";
+const Header = ({ setSearchText, isLoggedIn, setLogin }) => {
   const navigate = useNavigate();
   const homeHandler = () => {
     navigate("/");
     setSearchText("");
   };
+  const handleLogout = async () => {
+    try {
+      const res = await api.post("/auth/logout");
+      if (res.data.success) {
+        navigate("/");
+        setLogin(false);
+        localStorage.removeItem("accessToken");
+      } else {
+        console.log(res.data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  useEffect(() => {});
   return (
     <div className="header-wrapper">
       <div className="header-inner">
@@ -26,6 +43,8 @@ const Header = ({ setSearchText, isLoggedIn }) => {
         ) : (
           <div className="user-menu">
             <div onClick={() => navigate("/mypage")}>마이페이지</div>
+            <div>/</div>
+            <div onClick={handleLogout}>로그아웃</div>
           </div>
         )}
       </div>

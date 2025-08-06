@@ -20,3 +20,18 @@
   padding: 10px 0;
   scroll-snap-type: x mandatory;
 }
+.tip-card {
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 10px 0;
+}
+.tip-more {
+  text-align: right;
+  margin-right: 40px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.55);
+  font-weight: 700;
+}

@@ -91,3 +91,18 @@
 .number-btn-wrapper button.active {
   color: #0066ffcd;
 }
+.like-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+.like-wrapper h3 {
+  width: 100%;
+  font-size: 18px;
+  padding-top: 6px;
+  color: rgb(128, 128, 128);
+}
+.icon-like {
+  font-size: 25px;
+  margin-right: 4px;
+}

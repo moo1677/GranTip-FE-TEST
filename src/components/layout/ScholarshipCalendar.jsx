@@ -14,11 +14,11 @@ const ScholarshipCalendar = ({ subscribedScholarships }) => {
   // 이벤트 매핑
   const events = Array.isArray(subscribedScholarships)
     ? subscribedScholarships.map((s) => ({
-        title: s["상품명"],
-        start: parseISO(s["모집시작일"]),
-        end: parseISO(s["모집종료일"]),
+        title: s.productName,
+        start: parseISO(s.applicationStartDate),
+        end: parseISO(s.applicationEndDate),
         allDay: true,
-        id: s["번호"],
+        id: s.id,
       }))
     : [];
 

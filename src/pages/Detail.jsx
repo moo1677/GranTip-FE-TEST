@@ -6,10 +6,13 @@ import AutoFitText from "../utils/AutoFitText.jsx";
 import "./Detail.css";
 import axios from "axios";
 import { BASE_URL } from "../api/config.js";
+import api from "../utils/axios.js";
 
 const Detail = ({ isLoggedIn }) => {
   const { id } = useParams();
   const [liked, setLiked] = useState(false);
+  const [likeList, setLikeList] = useState([]);
+  const token = localStorage.getItem("accessToken");
   const [animate, setAnimate] = useState(false);
   const [scholarship, setScholarship] = useState(null);
   const infoFields = [
@@ -18,32 +21,44 @@ const Detail = ({ isLoggedIn }) => {
     { key: "gradeCategory", label: "학년 구분" },
   ];
   useEffect(() => {
-    const fetchScholarship = async () => {
+    const fetchAll = async () => {
       try {
-        const res = await axios.get(
+        const scholarshipRes = await axios.get(
           `${BASE_URL}/api/scholarships/${parseInt(id)}`
         );
-        if (res.data.success) {
-          setScholarship(res.data.result);
-        } else {
-          alert("장학금 불러오기 실패");
+        if (!scholarshipRes.data.success)
+          throw new Error("장학금 정보 불러오기 실패");
+        setScholarship(scholarshipRes.data.result);
+        if (isLoggedIn) {
+          const likeRes = await api.get("/api/favorites");
+          if (likeRes.data.success) {
+            const likeContent = likeRes.data.result.content;
+            setLikeList(likeContent);
+            setLiked(likeContent.some((item) => item.id === parseInt(id)));
+          }
         }
       } catch (err) {
         console.error("에러 발생:", err);
         alert("서버 오류로 장학금 목록을 불러올 수 없습니다.");
       }
     };
-    fetchScholarship();
-  }, [id]);
+    fetchAll();
+  }, [id, isLoggedIn, liked]);
 
-  const handleHeart = () => {
+  const handleHeart = async () => {
     if (!isLoggedIn) {
       alert("로그인이 필요합니다");
       return;
     }
-    setLiked(!liked);
-    setAnimate(true);
-    setTimeout(() => setAnimate(false), 300);
+
+    try {
+      await api.post(`${BASE_URL}/api/favorites/${parseInt(id)}`);
+      setLiked(!liked);
+      setAnimate(true);
+      setTimeout(() => setAnimate(false), 300);
+    } catch (err) {
+      console.error("좋아요 토글 실패", err);
+    }
   };
 
   if (!scholarship) return <p>존재하지 않는 장학금입니다.</p>;

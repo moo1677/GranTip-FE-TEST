@@ -56,16 +56,13 @@ const Login = ({ setIsLoggedIn }) => {
         alert(message || "로그인 실패\n이메일 및 비밀번호를 확인해주세요");
         return;
       }
-      console.log(res.headers);
       const accessToken = res.headers["authorization"];
-      localStorage.setItem("access", accessToken);
-      console.log("✅ 로그인 성공:", result);
-      console.log(accessToken);
+      localStorage.setItem("accessToken", accessToken);
       setIsLoggedIn(true);
       navigate("/");
     } catch (error) {
-      console.error("❌ 로그인 오류:", error);
-      alert("서버 오류입니다. 잠시 후 다시 시도해주세요.");
+      console.error("❌ 로그인 오류:", error.message);
+      alert("서버 오류입니다. 잠시 후 다시 시도해주세요.", error.message);
     }
   };
 
