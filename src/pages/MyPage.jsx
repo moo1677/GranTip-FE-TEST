@@ -13,7 +13,7 @@ const MyPage = () => {
     const fetchUserInfo = async () => {
       try {
         const [userRes, likeRes] = await Promise.all([
-          api.get("user/mypage"),
+          api.get("/user/mypage"),
           api.get("/api/favorites"),
         ]);
 
