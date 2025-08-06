@@ -11,8 +11,12 @@ api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("accessToken");
     if (token) {
-      config.headers.Authorization = `${token}`;
+      const formattedToken = token.startsWith("Bearer ")
+        ? token.split(" ")[1]
+        : token;
+      config.headers.Authorization = `Bearer ${formattedToken}`;
     }
+
     return config;
   },
   (err) => Promise.reject(err)

@@ -7,6 +7,14 @@
     {
       "source": "/auth/(.*)",
       "destination": "http://15.165.244.204:8080/auth/$1"
+    },
+    {
+      "source": "/email/(.*)",
+      "destination": "http://15.165.244.204:8080/email/$1"
+    },
+    {
+      "source": "/user/(.*)",
+      "destination": "http://15.165.244.204:8080/user/$1"
     }
   ]
 }
