@@ -13,7 +13,7 @@ async function fetchScholarships({
   keyword = null,
   category = null,
   pageNumber = 1,
-  pageSize = 20,
+  pageSize = 100,
 }) {
   // keyword는 항상 null
   const params = {
@@ -43,7 +43,7 @@ export default function useScholarships(
   keyword = null,
   category = "전체",
   pageNumber = 1,
-  pageSize = 20
+  pageSize = 100
 ) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);

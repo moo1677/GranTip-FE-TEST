@@ -99,7 +99,8 @@ const Signup = () => {
     email.value.trim() !== "" &&
     password.value.trim() !== "" &&
     passwordRe.value.trim() !== "" &&
-    gender !== "";
+    gender !== "" &&
+    emailVerified !== false;
   const handleSignup = async () => {
     try {
       const res = await axios.post(`${BASE_URL}/auth/signup`, formData);
@@ -145,9 +146,9 @@ const Signup = () => {
                 <button
                   className="email-auth-btn"
                   onClick={() => setShowEmailModal(true)}
-                  disabled={!email.isValid}
+                  disabled={emailVerified}
                 >
-                  이메일 인증
+                  {!emailVerified ? "이메일 인증" : "인증 완료"}
                 </button>
               </div>
               <div
