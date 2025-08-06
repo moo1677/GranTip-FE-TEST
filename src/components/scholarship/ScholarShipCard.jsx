@@ -1,7 +1,6 @@
 import "./ScholarShipCard.css";
 import myIcon from "../../assets/Icon.svg";
 import { useNavigate } from "react-router-dom";
-import AutoFitText from "../../utils/AutoFitText";
 const ScholarshipCard = ({ data, className }) => {
   const navigate = useNavigate();
   const handleClick = () => {

@@ -33,25 +33,34 @@ const Login = ({ setIsLoggedIn }) => {
     setIsFocused(true);
   };
 
-  const loginProcess = async () => {
+  const loginProcess = async (e) => {
+    e.preventDefault();
     try {
-      const res = await axios.post(`${BASE_URL}/auth/login`, {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${BASE_URL}/auth/login`,
+        {
+          email: email,
+          password: password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
       const { success, message, result } = res.data;
 
       if (!success) {
-        alert(message || "로그인 실패");
+        alert(message || "로그인 실패\n이메일 및 비밀번호를 확인해주세요");
         return;
       }
-
+      console.log(res.headers);
+      const accessToken = res.headers["authorization"];
+      localStorage.setItem("access", accessToken);
       console.log("✅ 로그인 성공:", result);
-      // 예: 토큰 저장
-      if (result?.token) {
-        localStorage.setItem("token", result.token);
-      }
+      console.log(accessToken);
       setIsLoggedIn(true);
       navigate("/");
     } catch (error) {

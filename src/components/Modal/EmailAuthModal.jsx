@@ -50,7 +50,12 @@ const EmailAuthModal = ({ email, onVerified, onClose }) => {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h3>이메일 인증</h3>
         <div className="email-wrapper">
-          <p>{email} 로 인증 메일을 전송합니다.</p>
+          <div className="email-info">
+            {!sent
+              ? "아래 메일 주소로 인증 코드를 전송합니다"
+              : "아래 메일 주소로 인증 코드를 발송했습니다"}
+          </div>
+          <div className="email-result">{email}</div>
           {!sent && (
             <button className="send-btn" onClick={handleSend}>
               인증 메일 전송
@@ -66,25 +71,23 @@ const EmailAuthModal = ({ email, onVerified, onClose }) => {
                 onChange={(e) => setCode(e.target.value)}
                 placeholder="인증 코드 입력"
               />
-              <div className="email-btn-wrapper">
-                <button
-                  className="email-send-btn"
-                  onClick={handleSend}
-                  disabled={!canResend}
-                >
-                  {canResend
-                    ? "인증 코드 다시 보내기"
-                    : `다시 보내기 (${resendTimer}s)`}
-                </button>
-                <button className="email-verify-btn" onClick={handleVerify}>
-                  인증 확인
-                </button>
+              <div className="email-send-btn" onClick={handleSend}>
+                {canResend
+                  ? "인증 코드 다시 보내기"
+                  : `다시 보내기 (${resendTimer}s)`}
               </div>
             </>
           )}
-          <button className="close-btn" onClick={onClose}>
-            닫기
-          </button>
+          <div className="email-btn-send-wrapper">
+            <button className="close-btn" onClick={onClose}>
+              닫기
+            </button>
+            {sent && (
+              <button className="email-verify-btn" onClick={handleVerify}>
+                인증 확인
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

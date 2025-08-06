@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import ProtectedRoute from "./hooks/ProtectedRoute";
 import Footer from "./components/layout/Footer";
 import ScrollToTop from "./utils/ScrollToTop";
+import LikeList from "./pages/LikeList";
 function AppContent() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [inputText, setInputText] = useState("");
@@ -95,6 +96,14 @@ function AppContent() {
             element={
               <PageTransitionWrapper>
                 <Detail isLoggedIn={isLoggedIn} />
+              </PageTransitionWrapper>
+            }
+          />
+          <Route
+            path="/like"
+            element={
+              <PageTransitionWrapper>
+                <LikeList />
               </PageTransitionWrapper>
             }
           />

@@ -67,6 +67,7 @@ const Search = () => {
   // ✅ 페이지 이동
   const handlePageChange = (pageNum) => {
     setCurrentPage(pageNum);
+    window.scrollTo({ top: 0 });
     navigate(
       `/search?query=${encodeURIComponent(
         searchText
@@ -100,7 +101,7 @@ const Search = () => {
           <div
             key={cat.search}
             className={`search-category-btn${
-              category === cat ? " active" : ""
+              category === cat.search ? " active" : ""
             }`}
             onClick={() => handleCategoryChange(cat)}
           >
