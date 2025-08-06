@@ -16,7 +16,7 @@ import ProtectedRoute from "./hooks/ProtectedRoute";
 import Footer from "./components/layout/Footer";
 import ScrollToTop from "./utils/ScrollToTop";
 import LikeList from "./pages/LikeList";
-import TipMore from "./pages/Tipmore";
+import TipMore from "./pages/TipMore.jsx";
 function AppContent() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [inputText, setInputText] = useState("");
