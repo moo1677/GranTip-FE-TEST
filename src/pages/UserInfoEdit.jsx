@@ -149,6 +149,7 @@ const UserInfoEdit = ({ username }) => {
         }
       } catch (err) {
         alert("서버 오류");
+        console.log(err);
       }
     };
     fetchUserInfo();
