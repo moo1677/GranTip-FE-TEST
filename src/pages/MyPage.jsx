@@ -25,6 +25,7 @@ const MyPage = () => {
         }
       } catch (error) {
         alert("서버 오류.");
+        console.log(error);
         // navigate("/");
       }
     };
