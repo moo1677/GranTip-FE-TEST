@@ -62,6 +62,9 @@
   height: 40px;
   border-radius: 10px;
   background: #e8e8e8;
+  display: flex;
+  align-items: center; /* 수직 가운데 정렬 */
+  padding-left: 20px;
 }
 
 /* 토글 섹션 */
@@ -178,15 +181,16 @@
   border: none;
   color: white;
   font-size: 15px;
+  cursor: pointer;
 }
 
 /* 비밀번호 수정 텍스트 */
 .password-edit {
-  color: #0068ff;
-  font-size: 10px;
+  width: 70%;
+  color: #0000009a;
+  font-size: 12px;
   text-decoration: underline;
   text-align: right;
-  margin-right: 100px;
   margin-top: 10px;
   cursor: pointer;
 }
@@ -206,4 +210,17 @@
   background: #0068ff;
   color: #ffff;
   border: none;
+}
+.select-wrapper .signup-dropdown-select {
+  border: 1.5px solid #b2b2b2;
+  height: 39px;
+  border-radius: 10px;
+  color: #b2b2b2;
+  font-weight: 600;
+  text-align: center;
+  transition: 0.3s;
+}
+.select-wrapper .signup-dropdown-select.active {
+  color: black;
+  border: 1.5px solid black;
 }

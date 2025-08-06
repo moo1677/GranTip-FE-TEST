@@ -104,16 +104,13 @@ const Signup = () => {
   const handleSignup = async () => {
     try {
       const res = await axios.post(`${BASE_URL}/auth/signup`, formData);
-      console.log("서버 응답 전체:", res);
       if (res.data.success) {
         alert("회원가입 성공!");
         navigate("/login");
       } else {
-        console.log("실패 응답 데이터:", res.data);
         alert("회원가입 실패: " + (res.data.message || "알 수 없는 이유"));
       }
     } catch (err) {
-      console.error("서버 오류:", err);
       const msg =
         err.response?.data?.message ||
         err.message ||
@@ -159,9 +156,6 @@ const Signup = () => {
                 {email.error}
               </div>
               <div className="signup-email-auth"></div>
-              {emailVerified && (
-                <span className="verified-tag">✔ 인증 완료</span>
-              )}
 
               {showEmailModal && (
                 <EmailAuthModal

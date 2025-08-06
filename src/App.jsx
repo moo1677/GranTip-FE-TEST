@@ -16,18 +16,29 @@ import ProtectedRoute from "./hooks/ProtectedRoute";
 import Footer from "./components/layout/Footer";
 import ScrollToTop from "./utils/ScrollToTop";
 import LikeList from "./pages/LikeList";
+import TipMore from "./pages/Tipmore";
 function AppContent() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [inputText, setInputText] = useState("");
   const location = useLocation();
   const hideHeaderRoutes = ["/login", "/signup"];
   const hideHeader = hideHeaderRoutes.includes(location.pathname);
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    setIsLoggedIn(token !== null && token !== "undefined");
+  }, []);
+
   return (
     <>
       <AnimatePresence>
         {!hideHeader && (
           <PageTransitionWrapper>
-            <Header setSearchText={setInputText} isLoggedIn={isLoggedIn} />
+            <Header
+              setSearchText={setInputText}
+              isLoggedIn={isLoggedIn}
+              setLogin={setIsLoggedIn}
+            />
           </PageTransitionWrapper>
         )}
       </AnimatePresence>
@@ -104,6 +115,14 @@ function AppContent() {
             element={
               <PageTransitionWrapper>
                 <LikeList />
+              </PageTransitionWrapper>
+            }
+          />
+          <Route
+            path="/tipmore"
+            element={
+              <PageTransitionWrapper>
+                <TipMore />
               </PageTransitionWrapper>
             }
           />

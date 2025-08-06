@@ -10,11 +10,19 @@
   display: block;
   width: 100%;
   text-align: right;
-  margin-right: 4rem;
   color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
   margin-bottom: 3px;
 }
 .go-back:hover {
   color: rgba(0, 0, 0, 0.8);
+}
+.card-wrapper-fa {
+  display: flex;
+  justify-content: space-between;
+}
+.card-score {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0066ffc3;
 }
