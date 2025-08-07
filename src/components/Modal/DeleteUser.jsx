@@ -8,9 +8,11 @@ const DeleteUser = ({ username, onClose, setIsLogged }) => {
   const handleDelete = async () => {
     try {
       const res = await api.delete("/user");
-      alert("정상적으로 회원탈퇴 되었습니다.");
-      nav("/");
-      setIsLogged(false);
+      if (res.data.success) {
+        alert("정상적으로 회원탈퇴 되었습니다.");
+        nav("/");
+        setIsLogged(false);
+      }
     } catch (err) {
       console.log(err);
     }
