@@ -12,6 +12,8 @@ const DeleteUser = ({ username, onClose, setIsLogged }) => {
         alert("정상적으로 회원탈퇴 되었습니다.");
         nav("/");
         setIsLogged(false);
+      } else {
+        console.log("실패");
       }
     } catch (err) {
       console.log(err);
