@@ -25,7 +25,7 @@ const LikeList = ({ userName }) => {
     <div className="likeList">
       <div className="search-wrapper">
         <h1>좋아요한 장학금</h1>
-        <h2 className="go-back" onClick={() => navigate("/mypage")}>
+        <h2 className="go-back-like" onClick={() => navigate("/mypage")}>
           뒤로가기
         </h2>
         <div className="search-list">

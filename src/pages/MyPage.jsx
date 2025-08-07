@@ -49,11 +49,6 @@ const MyPage = () => {
         <div className="user-info-section">
           <div className="user-info-name">{userInfo.username}</div>
           <div className="user-info-school">{userInfo.userUniversity}</div>
-          {!userInfo.university_year ? (
-            <div className="user-info-univ">추가 정보를 입력해주세요</div>
-          ) : (
-            <div className="user-info-univ">{userInfo.university_year}</div>
-          )}
         </div>
         <div className="v-line"></div>
         <div className="user-info-section">

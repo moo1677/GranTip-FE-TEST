@@ -87,7 +87,7 @@ body {
 
 .user-info-name {
   margin-top: 7px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 600;
   color: var(--color-dark-gray);
 }
@@ -95,7 +95,7 @@ body {
 .user-info-school,
 .user-info-univ {
   margin-top: 3px;
-  font-size: var(--font-sm);
+  font-size: 18px;
   color: var(--color-gray);
   text-align: center;
 }
@@ -108,16 +108,17 @@ body {
 }
 
 .scholar-mark {
-  margin: 15px auto;
-  font-size: var(--font-md);
+  margin: 0 auto;
+  margin-top: 6px;
+  font-size: 20px;
   font-weight: 600;
   color: var(--color-dark-gray);
 }
 
 .scholar-mark-num {
-  font-size: var(--font-sm);
+  font-size: 15px;
   color: var(--color-gray);
-  margin-bottom: 15px;
+  margin-top: 7px;
 }
 
 .scholar-info,
