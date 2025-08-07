@@ -15,7 +15,7 @@
 .tip-scroll {
   display: flex;
   flex-direction: row;
-  overflow-x: auto;
+  overflow-x: scroll;
   gap: 18px;
   padding: 10px 0;
   scroll-snap-type: x mandatory;
