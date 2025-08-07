@@ -105,6 +105,7 @@ const MyPage = ({ setIsLogged }) => {
         <DeleteUser
           username={userInfo.username}
           onClose={() => setDeleteUser(false)}
+          setIsLogged={setIsLogged}
         />
       )}
     </div>
