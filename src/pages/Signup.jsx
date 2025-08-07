@@ -143,7 +143,7 @@ const Signup = () => {
                 <button
                   className="email-auth-btn"
                   onClick={() => setShowEmailModal(true)}
-                  disabled={emailVerified}
+                  disabled={emailVerified || !email.isValid}
                 >
                   {!emailVerified ? "이메일 인증" : "인증 완료"}
                 </button>

@@ -18,7 +18,7 @@ const Login = ({ setIsLoggedIn }) => {
   };
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const isFormValid = emailRegex.test(email) && password.length > 8;
+  const isFormValid = emailRegex.test(email) && password.length > 7;
 
   const handleEmailBlur = () => {
     setIsFocused(false);
