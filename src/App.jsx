@@ -74,7 +74,7 @@ function AppContent() {
             element={
               <PageTransitionWrapper>
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <MyPage />
+                  <MyPage setIsLogged={setIsLoggedIn} />
                 </ProtectedRoute>
               </PageTransitionWrapper>
             }

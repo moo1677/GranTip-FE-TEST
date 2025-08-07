@@ -4,7 +4,7 @@ import "./MyPage.css";
 import { useNavigate } from "react-router-dom";
 import api from "../utils/axios";
 import DeleteUser from "../components/Modal/DeleteUser";
-const MyPage = () => {
+const MyPage = ({ setIsLogged }) => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
   const [likeInfo, setLikeInfo] = useState([]);
@@ -22,6 +22,8 @@ const MyPage = () => {
           setLikeInfo(likeRes.data.result.content);
         } else {
           alert("유저 정보를 찾을 수 없습니다.");
+          setIsLogged(false);
+          navigate("/");
         }
       } catch (error) {
         alert("서버 오류.");
